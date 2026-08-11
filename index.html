@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Joshua Bautista | Automation & Customer Support Systems</title>
+
+  <meta
+    name="description"
+    content="Joshua Bautista builds practical business automations and customer-support systems using n8n, Gmail, Google Sheets, JavaScript, and AI."
+  >
+
+  <style>
+    * {
+      box-sizing: border:box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+      }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f7f5;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width min(1100px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    nab {
+      padding: 24px 0;
+      border-bottom: 1px solid #ddd;
+      background: f7f7f5;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content" space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .nav-links a:hover {
+      color: #000;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 110px 0 90px;
+    }
+
+    .eyebrow {
+      font-size: 14px;
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 76x);
+      line-height: 1.05;
+      letter-spacing: 3px;
+      max-width: 850px;
+      margin-bottom: 28px;
+    }
+
+    .hero-texxt {
+      font-size: 20px;
+      color: #555;
+      max-width: 700px;
+      margin-bottom: 35px;
+    }
+
+      buttons {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 13px 20px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        border: 1px solid #222;
+      }
+
+      .button-primary {
+        background: #222;
+        color: white;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: #222;
+
+        .button:hover {
+          opacity: 0.8;
+        }
+
+        /* Sections */
+
+        section {
+          padding: 85px, 0;
+          border-top: 1px solid #ddd;
+        }
+
+        .section-label {
+          font-size: 13px;
+          font-weight: 700;
+          tex-transform: uppercase;
+          letter-spacing: 1px;
+          color: #777;
+          margin-bottom: 15px;
+        }
+
+        h2 {
+          font-size: 38px;
+          line-height: 1.15;
+          letter-spacing: -1px;
+          margin-borrom: 20px;
+        }
+
+        .section-description {
+          max-width: 700px;
+          color: #666;
+          marhin-bottom: 4-px;
+        }
+
+        /* Project */
+
+        .project-card {
+          background: white;
+          border: 1px solid #ddd;
+          border-radius: 14px;
+          padding: 35px;
+        }
+
+        .project-status {
+          display: inline-block;
+          font-size: 12px;
+          font-weight: 700;
+          background: #e8f5e9;
+          color: #28733a;
+          padding: 5px 9px;
+          border-radius: 20px;
+          margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+          font-size: 30px;
+          margin-bottom: 8px;
+        }
+
+        .project-subtitle {
+          cp;pr: #666;
+        margin-bottom: 18px;
+      }
+
+      .tech-stack {
+        font-family: monospace;
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 25px;
+      }
+
+      .project-description {
+        max-width: 750px;
+        margin-bottom: 25px;
+      }
+
+      /* What I Build */
+
+      .build-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .build-item {
+        background: white;
+        border: 1px solod #ddd;
+        padding: 25px;
+        font-weight: 700;
+      }
+
+      /* About */
+
+      .about-text {
+        max-width: 800px;
+        font-size: 18px;
+        color: #555;
+      }
+
+      .about-test p {
+        margin-bottom: 20px;
+      }
+
+      /* Approach */
+
+      .quote {
+        border-left: 4px solod #222;
+        padding: 20px 25px;
+        font-size: 24px;
+        font-weight: 700;
+        max-width: 700px;
+      }
+
+      /* Contact */
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+
+      .contact-item strong {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .contact-item span {
+        color: #666;
+        font-size: 14px;
+      }
+
+      /* Footer */
+
+      footer {
+        border-top: 1px solid #ddd;
+        padding: 30px 0;
+        color: #777;
+        font-size: 13px;
+      }
+
+      /* Mobile */
+
+      @media (max-width: 700px) {
+        .nav-inner {
+          align-items: flex-start;
+          gap: 15pxl
+        }
+
+        .nav-links {
+          gap: 12px;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+        }
+
+        .hero {
+          padding: 75px 0 65px;
+        }
+
+        h1 {
+          letter-spacing: -2px;
+        }
+
+        .build-grid,
+        .contact-grid {
+          grid-template-columnsL 1fr;
+        }
+
+        section {
+          paddingL 60px 0;
+        }
+
+        .project-card {
+          padding: 25px;
+        }
+      }
+      </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+
+  <nav>
+    <div class="container nav-inner">
+      <div class="logo">JOSHUA BAUTISTA</div>div>
+
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
+
+  <header class="hero>
+    <div class="container">
+
+      <div class="eyebrow">
+        AUTOMATION & CUSTOMER SUPPORT SYSTEMS
+      </div>
+
+      <h1>
+        I build practical business automations that reduce repetitive work.
+      </h1>
+
+      <p class="hero-text'>
+        I combine customer-support experience with workflow automation
+        to build systems that keep business operations organized,
+        trackable, and easier to manage.
+      </p>
+
+      <div class="buttons">
+        <a class="button button-primary" href="#work">
+          View My Work
+        </a>
+
+        <a class="button button-secondary" href="#contact">
+          Contact Me
+        </a>
+      </div>
+
+  </div>
+</header>
+
+
+  <!-- Featured Project -->
+
+  <section id="work">
+
+    <div class="container">
+
+      <div class="section-label">
+        Featured Project
+      </div>
+
+      <h2>ANNA v2</h2>
+
+      <p class="section-description">
+        Automated Customer Support Ticketing System
+      </p>
+
+      <div class="project-card">
+
+        <div class="project-status">
+          ● CORE AUTOMATION OPERATIONAL
+        </div>
+
+        <h3>
+          Automated Customer Support Ticketing System
+        </h3>
+
+        <p class="prohect-subtitle">
+          Conversation-aware email processing and ticket management.
+        </p>
+
+        <div class="tech-stack">
+          n8n · Gmail · Google Sheets · JavaScript
+        </div>
+
+        <p class="project-description">
+          ANNA v2 processes incoming Gmail conversations, detects
+          new and existing conversations, routes requests, generates
+          structured ticket IDs, registers tickets in a database,
+          updates existing tickets, and links tickets back to their
+          original Gmail conversations.
+        </p>
+
+        <a
+          class="button button-primary"
+          href="https://app.notion.com/p/Anna-v2-Automated-Customer-Support-Ticketing-System-fd4e2506952c40478bef350619235e25?pvs=21"
+          target="_blank"
+        >
+          View Case Study →
+        </a>
+
+      </div>
+
+     </div> 
+
+    </section>
+
+
+    <!-- What I Build -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-label">
+          Capabilities
+        </div>
+
+        <h2>What I Build</h2>
+
+        <div class="build-grid">
+
+          <div class="build-item">
+            ⚙️ Business Prorcess Automation
+          </div>
+
+          <div class="build-item">
+            📧 Email & Customer Support Automation
+          </div>d
+
+          <div class="build-item">
+            🔄 Data Synchronization
+          </div>
+
+          <div class="build-item">
+            📊 Reporting & Internal Workflows
+          </div>  
+
+          <div class="build-item">
+            🤖 AI-assisted Business Processes
+          </div>
+
+        </div>
+
+      </section>
+
+    
+      <!-- Approach -->
+
+      <section>
+
+        <div class="container">
+
+          <div class="section-label">
+            My Approach
+          </div> 
+
+          <div class="quote">
+            "Automate what is predictable.
+             Use AI where understanding is required."
+          </div>
+
+        </div>
+
+      </section>
+  
+
+      <!-- About -->
+
+      <section id="about">
+
+        <div class="container">
+
+          <div class="section-label">
+            About Me
+          </div>
+
+          <h2>Customer Support → Automation</h2>
+
+          <div class="about-text">
+
+            <p>
+              I'm Joshua Bautista, a customer-support professional and
+              business automation builder in the Philippines.
+            </p>
+
+            <p>
+              I started my career in customer support, working across
+              collections, food delivery, telecommunications, sales,
+              and technical support. That experience gave me a practical
+              understanding of the repetitive administrative work that
+              happens behind customer service.
+            </p>
+
+            <p>
+              I'm now combining that operational experience with workflow
+              automation to build systems that reduce repetitive work,
+              organize information, and keep business processes moving.
+            </p> 
+
+            <p>
+              My approach is simple:
+              understand the process first, automate what is predictable,
+              and use AI where it genuinely adds intelligence.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Contact -->
+
+      <section id="contact">
+
+        <div class="container">
+
+          <div class="section-label">
+            Contact
+          </div>
+
+          <h2>Let's Build Something Useful.</h2>
+
+          <p class="section-description">
+            Available for freelance automation and customer-support
+            workflow projects.
+          </p>
+
+          <div class+"contact-grid">
+
+            <a class+"contact-item" href="mailto:joshuaisonfaya@gmail.com">
+              <strong>📧 Email</strong>
+              <span>joshuaisonfaya@gmail.com</span>
+            </a> 
+
+            <a
+              class="contact-item"
+              href="https://www.facebook.com/jdbautistaautomations/"
+              target="_blank"
+             >
+              <strong>📘 Facebook</strong>
+              <span>jdbautistaautomations</span>
+            </a>
+
+            <div class="contact-item">
+              <strong>💼 Upwork</strong>
+              <span>Available through my Uprowk profile</span>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- Footer -->
+
+        <footer>
+
+          <div class="container">
+            © 2026 Joshua Bautista · Automation & Customer Support Systems
+          </div>
+
+        </footer>
+
+      </body>
+      </html>
+          
+
+    
+    
