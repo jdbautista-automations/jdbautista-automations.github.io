@@ -1,586 +1,677 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Joshua Bautista | Automation & Customer Support Systems</title>
+    <title>Joshua Bautista | Automation & Customer Support Systems</title>
 
-  <meta
-    name="description"
-    content="Joshua Bautista builds practical business automations and customer-support systems using n8n, Gmail, Google Sheets, JavaScript, and AI."
-  >
+    <meta name="description"
+          content="Joshua Bautista builds practical business automations and customer-support workflow systems using n8n, Gmail, Google Sheets, JavaScript, and AI-assisted tools.">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    html {
-      scroll-behavior: smooth;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f7f5;
-      color: #222;
-      line-height: 1.6;
-    }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f8fafc;
+        }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+        a {
+            color: inherit;
+        }
 
-    .container {
-      width: min(1100px, 90%);
-      margin: auto;
-    }
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
 
-    /* Navigation */
+        /* Navigation */
 
-    nav {
-      padding: 24px 0;
-      border-bottom: 1px solid #ddd;
-      background: #f7f7f5;
-    }
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(248, 250, 252, 0.95);
+            border-bottom: 1px solid #e5e7eb;
+            backdrop-filter: blur(8px);
+        }
 
-    .nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .nav-inner {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
 
-    .logo {
-      font-weight: 700;
-      font-size: 18px;
-    }
+        .logo {
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: -0.02em;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      font-size: 14px;
-      color: #555;
-    }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
 
-    .nav-links a:hover {
-      color: #000;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
 
-    /* Hero */
+        .nav-links a:hover {
+            color: #111827;
+        }
 
-    .hero {
-      padding: 110px 0 90px;
-    }
+        /* Hero */
 
-    .eyebrow {
-      font-size: 14px;
-      font-weight: 700;
-      color: #666;
-      margin-bottom: 18px;
-      letter-spacing: 0.5px;
-    }
+        .hero {
+            padding: 110px 0 90px;
+        }
 
-    h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.05;
-      letter-spacing: -3px;
-      max-width: 850px;
-      margin-bottom: 28px;
-    }
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
 
-    .hero-text {
-      font-size: 20px;
-      color: #555;
-      max-width: 700px;
-      margin-bottom: 35px;
-    }
+        h1 {
+            max-width: 850px;
+            font-size: clamp(2.8rem, 7vw, 5.2rem);
+            line-height: 1.02;
+            letter-spacing: -0.055em;
+            color: #111827;
+        }
 
-    .buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+        .hero-subtitle {
+            max-width: 680px;
+            margin-top: 24px;
+            font-size: 1.25rem;
+            color: #6b7280;
+        }
 
-    .button {
-      display: inline-block;
-      padding: 13px 20px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 14px;
-      border: 1px solid #222;
-    }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 32px;
+        }
 
-    .button-primary {
-      background: #222;
-      color: white;
-    }
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid #d1d5db;
+            background: white;
+        }
 
-    .button-secondary {
-      background: transparent;
-      color: #222;
-    }
+        .button-primary {
+            background: #111827;
+            border-color: #111827;
+            color: white;
+        }
 
-    .button:hover {
-      opacity: 0.8;
-    }
+        .button:hover {
+            transform: translateY(-1px);
+        }
 
-    /* Sections */
+        /* Sections */
 
-    section {
-      padding: 85px 0;
-      border-top: 1px solid #ddd;
-    }
+        section {
+            padding: 85px 0;
+            border-top: 1px solid #e5e7eb;
+        }
 
-    .section-label {
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #777;
-      margin-bottom: 15px;
-    }
+        .section-label {
+            margin-bottom: 10px;
+            color: #6b7280;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
 
-    h2 {
-      font-size: 38px;
-      line-height: 1.15;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
-    }
+        h2 {
+            margin-bottom: 18px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            color: #111827;
+        }
 
-    .section-description {
-      max-width: 700px;
-      color: #666;
-      margin-bottom: 40px;
-    }
+        .section-intro {
+            max-width: 720px;
+            color: #6b7280;
+            font-size: 1.05rem;
+        }
 
-    /* Project */
+        /* Project */
 
-    .project-card {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 14px;
-      padding: 35px;
-    }
+        .project-card {
+            margin-top: 35px;
+            padding: 35px;
+            border: 1px solid #dbe2ea;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+        }
 
-    .project-status {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      background: #e8f5e9;
-      color: #28733a;
-      padding: 5px 9px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-    }
+        .project-status {
+            display: inline-block;
+            margin-bottom: 16px;
+            color: #166534;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
 
-    .project-card h3 {
-      font-size: 30px;
-      margin-bottom: 8px;
-    }
+        .project-card h3 {
+            margin-bottom: 8px;
+            font-size: 2rem;
+            color: #111827;
+        }
 
-    .project-subtitle {
-      color: #666;
-      margin-bottom: 18px;
-    }
+        .project-title {
+            margin-bottom: 18px;
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
 
-    .tech-stack {
-      font-family: monospace;
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 25px;
-    }
+        .tech-stack {
+            margin-bottom: 20px;
+            color: #4b5563;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
 
-    .project-description {
-      max-width: 750px;
-      margin-bottom: 25px;
-    }
+        .project-card p {
+            max-width: 780px;
+            margin-bottom: 22px;
+        }
 
-    /* What I Build */
+        /* Capabilities */
 
-    .build-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 35px;
+        }
 
-    .build-item {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 25px;
-      font-weight: 700;
-    }
+        .capability {
+            padding: 24px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
 
-    /* About */
+        .capability h3 {
+            margin-bottom: 6px;
+            font-size: 1rem;
+        }
 
-    .about-text {
-      max-width: 800px;
-      font-size: 18px;
-      color: #555;
-    }
+        .capability p {
+            color: #6b7280;
+            font-size: 0.92rem;
+        }
 
-    .about-text p {
-      margin-bottom: 20px;
-    }
+        /* Approach */
 
-    /* Approach */
+        .quote {
+            max-width: 850px;
+            margin-top: 30px;
+            padding: 30px;
+            border-left: 4px solid #111827;
+            background: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+        }
 
-    .quote {
-      border-left: 4px solid #222;
-      padding: 20px 25px;
-      font-size: 24px;
-      font-weight: 700;
-      max-width: 700px;
-    }
+        /* About */
 
-    /* Contact */
+        .about-text {
+            max-width: 800px;
+        }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
+        .about-text p {
+            margin-bottom: 18px;
+        }
 
-    .contact-item {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 22px;
-    }
+        /* Contact */
 
-    .contact-item strong {
-      display: block;
-      margin-bottom: 5px;
-    }
+        .contact-card {
+            margin-top: 30px;
+            padding: 35px;
+            border-radius: 16px;
+            background: #111827;
+            color: white;
+        }
 
-    .contact-item span {
-      color: #666;
-      font-size: 14px;
-    }
+        .contact-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.7rem;
+        }
 
-    /* Footer */
+        .contact-card p {
+            margin-bottom: 20px;
+            color: #d1d5db;
+        }
 
-    footer {
-      border-top: 1px solid #ddd;
-      padding: 30px 0;
-      color: #777;
-      font-size: 13px;
-    }
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
 
-    /* Mobile */
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #6b7280;
+        }
 
-    @media (max-width: 700px) {
-      .nav-inner {
-        align-items: flex-start;
-        gap: 15px;
-      }
+        .contact-links a:hover {
+            border-color: white;
+        }
 
-      .nav-links {
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
+        /* Footer */
 
-      .hero {
-        padding: 75px 0 65px;
-      }
+        footer {
+            padding: 35px 0;
+            color: #6b7280;
+            font-size: 0.85rem;
+            border-top: 1px solid #e5e7eb;
+        }
 
-      h1 {
-        letter-spacing: -2px;
-      }
+        /* Mobile */
 
-      .build-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
+        @media (max-width: 700px) {
+            .nav-inner {
+                min-height: 60px;
+            }
 
-      section {
-        padding: 60px 0;
-      }
+            .nav-links {
+                gap: 12px;
+            }
 
-      .project-card {
-        padding: 25px;
-      }
-    }
-  </style>
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 75px 0 65px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .capability-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card,
+            .contact-card {
+                padding: 25px;
+            }
+
+            .quote {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- Navigation -->
+    <nav>
+        <div class="container nav-inner">
 
-  <nav>
-    <div class="container nav-inner">
-      <div class="logo">JOSHUA BAUTISTA</div>
+            <div class="logo">
+                Joshua Bautista
+            </div>
 
-      <div class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
+            <ul class="nav-links">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
 
-
-  <!-- Hero -->
-
-  <header class="hero">
-    <div class="container">
-
-      <div class="eyebrow">
-        AUTOMATION & CUSTOMER SUPPORT SYSTEMS
-      </div>
-
-      <h1>
-        I build practical business automations that reduce repetitive work.
-      </h1>
-
-      <p class="hero-text">
-        I combine customer-support experience with workflow automation
-        to build systems that keep business operations organized,
-        trackable, and easier to manage.
-      </p>
-
-      <div class="buttons">
-        <a class="button button-primary" href="#work">
-          View My Work
-        </a>
-
-        <a class="button button-secondary" href="#contact">
-          Contact Me
-        </a>
-      </div>
-
-    </div>
-  </header>
+        </div>
+    </nav>
 
 
-  <!-- Featured Project -->
+    <main>
 
-  <section id="work">
+        <!-- HERO -->
 
-    <div class="container">
+        <header class="hero">
 
-      <div class="section-label">
-        Featured Project
-      </div>
+            <div class="container">
 
-      <h2>ANNA v2</h2>
+                <span class="eyebrow">
+                    Automation & Customer Support Systems
+                </span>
 
-      <p class="section-description">
-        Automated Customer Support Ticketing System
-      </p>
+                <h1>
+                    I build practical business automations that reduce repetitive work.
+                </h1>
 
-      <div class="project-card">
+                <p class="hero-subtitle">
+                    I combine customer-support experience with workflow automation
+                    to build systems that organize information, reduce manual work,
+                    and keep business processes moving.
+                </p>
 
-        <div class="project-status">
-          ● CORE AUTOMATION OPERATIONAL
+                <div class="buttons">
+
+                    <a class="button button-primary" href="#work">
+                        View My Work
+                    </a>
+
+                    <a class="button" href="#contact">
+                        Contact Me
+                    </a>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- FEATURED PROJECT -->
+
+        <section id="work">
+
+            <div class="container">
+
+                <div class="section-label">
+                    Featured Project
+                </div>
+
+                <h2>
+                    ANNA v2
+                </h2>
+
+                <p class="section-intro">
+                    Automated Customer Support Ticketing System
+                </p>
+
+                <div class="project-card">
+
+                    <div class="project-status">
+                        ● CORE AUTOMATION OPERATIONAL
+                    </div>
+
+                    <h3>
+                        Automated Customer Support Ticketing System
+                    </h3>
+
+                    <div class="tech-stack">
+                        n8n · Gmail · Google Sheets · JavaScript
+                    </div>
+
+                    <p>
+                        ANNA v2 processes incoming Gmail conversations, detects
+                        new and existing conversations, routes requests, generates
+                        structured ticket IDs, registers tickets in a database,
+                        updates existing tickets, and links tickets back to their
+                        original Gmail conversations.
+                    </p>
+
+                    <a
+                        class="button button-primary"
+                        href="https://app.notion.com/p/Anna-v2-Automated-Customer-Support-Ticketing-System-fd4e2506952c40478bef350619235e25?pvs=21"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        View Case Study →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CAPABILITIES -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="section-label">
+                    Capabilities
+                </div>
+
+                <h2>
+                    What I Build
+                </h2>
+
+                <p class="section-intro">
+                    Practical automation systems built around real business
+                    processes and operational requirements.
+                </p>
+
+                <div class="capability-grid">
+
+                    <div class="capability">
+                        <h3>⚙️ Business Process Automation</h3>
+                        <p>
+                            Automating repetitive operational workflows and
+                            business processes.
+                        </p>
+                    </div>
+
+                    <div class="capability">
+                        <h3>📧 Email & Customer Support Automation</h3>
+                        <p>
+                            Processing, routing, organizing, and tracking
+                            customer conversations.
+                        </p>
+                    </div>
+
+                    <div class="capability">
+                        <h3>🔄 Data Synchronization</h3>
+                        <p>
+                            Moving and keeping information synchronized across
+                            business systems.
+                        </p>
+                    </div>
+
+                    <div class="capability">
+                        <h3>📊 Reporting & Internal Workflows</h3>
+                        <p>
+                            Building structured workflows for records,
+                            notifications, reporting, and internal operations.
+                        </p>
+                    </div>
+
+                    <div class="capability">
+                        <h3>🤖 AI-assisted Business Processes</h3>
+                        <p>
+                            Introducing AI where natural-language understanding
+                            adds genuine value to a workflow.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- APPROACH -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="section-label">
+                    My Approach
+                </div>
+
+                <h2>
+                    Automation First.
+                </h2>
+
+                <div class="quote">
+                    “Automate what is predictable.
+                    Use AI where understanding is required.”
+                </div>
+
+                <p class="section-intro" style="margin-top: 25px;">
+                    I don't start with AI simply because AI is available.
+                    I start by understanding the process, identifying what
+                    can be automated reliably, and then introducing AI where
+                    it genuinely adds intelligence.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section id="about">
+
+            <div class="container">
+
+                <div class="section-label">
+                    About Me
+                </div>
+
+                <h2>
+                    Customer Support → Automation
+                </h2>
+
+                <div class="about-text">
+
+                    <p>
+                        I'm Joshua Bautista, a customer-support professional
+                        and business automation builder in the Philippines.
+                    </p>
+
+                    <p>
+                        I started my career in customer support, working across
+                        collections, food delivery, telecommunications, sales,
+                        and technical support. That experience gave me a practical
+                        understanding of the repetitive administrative work that
+                        happens behind customer service.
+                    </p>
+
+                    <p>
+                        I'm now combining that operational experience with workflow
+                        automation to build systems that reduce repetitive work,
+                        organize information, and keep business processes moving.
+                    </p>
+
+                    <p>
+                        My approach is simple: understand the process first,
+                        automate what is predictable, and use AI where it genuinely
+                        adds value.
+                    </p>
+
+                    <p>
+                        I'm interested in helping businesses automate repetitive
+                        customer-support, operations, data, and workflow processes
+                        so their teams can spend less time managing the process
+                        around the work — and more time doing the work itself.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section id="contact">
+
+            <div class="container">
+
+                <div class="section-label">
+                    Contact
+                </div>
+
+                <h2>
+                    Let's Build Something Useful.
+                </h2>
+
+                <div class="contact-card">
+
+                    <h3>
+                        Available for freelance projects.
+                    </h3>
+
+                    <p>
+                        I'm available for automation, customer-support workflow,
+                        and business-process automation projects.
+                    </p>
+
+                    <div class="contact-links">
+
+                        <a href="mailto:joshuaisonfaya@gmail.com">
+                            📧 Email
+                        </a>
+
+                        <a
+                            href="https://www.facebook.com/jdbautistaautomations/"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            📘 Facebook
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="container">
+
+            © 2026 Joshua Bautista · Automation & Customer Support Systems
+
         </div>
 
-        <h3>
-          Automated Customer Support Ticketing System
-        </h3>
-
-        <p class="project-subtitle">
-          Conversation-aware email processing and ticket management.
-        </p>
-
-        <div class="tech-stack">
-          n8n · Gmail · Google Sheets · JavaScript
-        </div>
-
-        <p class="project-description">
-          ANNA v2 processes incoming Gmail conversations, detects
-          new and existing conversations, routes requests, generates
-          structured ticket IDs, registers tickets in a database,
-          updates existing tickets, and links tickets back to their
-          original Gmail conversations.
-        </p>
-
-        <a
-          class="button button-primary"
-          href="https://app.notion.com/p/Anna-v2-Automated-Customer-Support-Ticketing-System-fd4e2506952c40478bef350619235e25?pvs=21"
-          target="_blank"
-        >
-          View Case Study →
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- What I Build -->
-
-  <section>
-
-    <div class="container">
-
-      <div class="section-label">
-        Capabilities
-      </div>
-
-      <h2>What I Build</h2>
-
-      <div class="build-grid">
-
-        <div class="build-item">
-          ⚙️ Business Process Automation
-        </div>
-
-        <div class="build-item">
-          📧 Email & Customer Support Automation
-        </div>
-
-        <div class="build-item">
-          🔄 Data Synchronization
-        </div>
-
-        <div class="build-item">
-          📊 Reporting & Internal Workflows
-        </div>
-
-        <div class="build-item">
-          🤖 AI-assisted Business Processes
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- Approach -->
-
-  <section>
-
-    <div class="container">
-
-      <div class="section-label">
-        My Approach
-      </div>
-
-      <div class="quote">
-        “Automate what is predictable.
-        Use AI where understanding is required.”
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- About -->
-
-  <section id="about">
-
-    <div class="container">
-
-      <div class="section-label">
-        About Me
-      </div>
-
-      <h2>Customer Support → Automation</h2>
-
-      <div class="about-text">
-
-        <p>
-          I'm Joshua Bautista, a customer-support professional and
-          business automation builder based in the Philippines.
-        </p>
-
-        <p>
-          I started my career in customer support, working across
-          collections, food delivery, telecommunications, sales,
-          and technical support. That experience gave me a practical
-          understanding of the repetitive administrative work that
-          happens behind customer service.
-        </p>
-
-        <p>
-          I'm now combining that operational experience with workflow
-          automation to build systems that reduce repetitive work,
-          organize information, and keep business processes moving.
-        </p>
-
-        <p>
-          I work primarily with n8n, Gmail, Google Sheets, JavaScript,
-          and customer-support platforms.
-        </p>
-
-        <p>
-          My approach is simple:
-          understand the process first, automate what is predictable,
-          and use AI where it genuinely adds intelligence.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- Contact -->
-
-  <section id="contact">
-
-    <div class="container">
-
-      <div class="section-label">
-        Contact
-      </div>
-
-      <h2>Let's Build Something Useful.</h2>
-
-      <p class="section-description">
-        Available for freelance automation and customer-support
-        workflow projects.
-      </p>
-
-      <div class="contact-grid">
-
-        <a class="contact-item" href="mailto:joshuaisonfaya@gmail.com">
-          <strong>📧 Email</strong>
-          <span>joshuaisonfaya@gmail.com</span>
-        </a>
-
-        <a
-          class="contact-item"
-          href="https://www.facebook.com/jdbautistaautomations/"
-          target="_blank"
-        >
-          <strong>📘 Facebook</strong>
-          <span>jdbautistaautomations</span>
-        </a>
-
-        <div class="contact-item">
-          <strong>💼 Upwork</strong>
-          <span>Available through my Upwork profile</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- Footer -->
-
-  <footer>
-
-    <div class="container">
-      © 2026 Joshua Bautista · Automation & Customer Support Systems
-    </div>
-
-  </footer>
+    </footer>
 
 </body>
 </html>
