@@ -323,6 +323,20 @@
             margin-bottom: 10px;
         }
 
+        .project-link {
+            display: inline-block;
+        }
+
+        .project-link .project-title,
+        .project-link .project-subtitle {
+            transition: color 0.2s ease;
+        }
+
+        .project-link:hover .project-title,
+        .project-link:hover .project-subtitle {
+            color: var(--accent);
+        }
+
         .project-subtitle {
             color: var(--accent);
             font-weight: 760;
@@ -821,8 +835,13 @@
                 </p>
 
                 <div class="button-row">
-                    <a href="#work" class="button button-primary">
-                        View Featured Project
+                    <a
+                        href="https://app.notion.com/p/Joshua-Bautista-Portfolio-abb565134950426a801baac99f9d44a5"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="button button-primary"
+                    >
+                        View My Work
                     </a>
                     <a href="#contact" class="button button-secondary">
                         Contact Me
@@ -844,10 +863,18 @@
                     <div class="project-main">
                         <div class="project-heading">
                             <div>
-                                <h2 class="project-title">ANNA v2</h2>
-                                <div class="project-subtitle">
-                                    Automated Customer Support Ticketing System
-                                </div>
+                                <a
+                                    href="https://app.notion.com/p/ANNA-v2-Automated-Customer-Support-Ticketing-System-fd4e2506952c40478bef350619235e25"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="project-link"
+                                    aria-label="Open the ANNA v2 case study in Notion"
+                                >
+                                    <h2 class="project-title">ANNA v2</h2>
+                                    <div class="project-subtitle">
+                                        Automated Customer Support Ticketing System
+                                    </div>
+                                </a>
                             </div>
 
                             <div class="status">
