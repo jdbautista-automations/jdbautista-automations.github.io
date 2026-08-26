@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Joshua Bautista | Automation & Customer Support Systems</title>
+    <title>Joshua Bautista | AI Automation & Customer Operations Systems</title>
     <meta
         name="description"
-        content="Joshua Bautista builds practical business automations and customer-support systems with n8n, Gmail, Google Sheets, Google Apps Script, JavaScript, and Docker."
+        content="Joshua Bautista builds practical AI-assisted WhatsApp booking, payment-operations, and customer-support automation systems with n8n, OpenAI, Airtable, and JavaScript."
     >
     <meta name="theme-color" content="#0b0b10">
     <link rel="canonical" href="https://jdbautista-automations.github.io/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jdbautista-automations.github.io/">
-    <meta property="og:title" content="Joshua Bautista | Automation & Customer Support Systems">
+    <meta property="og:title" content="Joshua Bautista | AI Automation & Customer Operations Systems">
     <meta
         property="og:description"
-        content="Practical automation systems built from real customer-support operations experience. Featured project: ANNA v2.3.2."
+        content="Live projects: Amihan, an AI-powered WhatsApp booking and payment-operations MVP, and ANNA v2.3.2, a production-verified support system."
     >
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Joshua Bautista | Automation & Customer Support Systems">
+    <meta name="twitter:title" content="Joshua Bautista | AI Automation & Customer Operations Systems">
     <meta
         name="twitter:description"
-        content="Practical automation systems built from real customer-support operations experience. Featured project: ANNA v2.3.2."
+        content="Live projects: Amihan, an AI-powered WhatsApp booking and payment-operations MVP, and ANNA v2.3.2, a production-verified support system."
     >
 
     <style>
@@ -294,7 +294,12 @@
             box-shadow: 0 0 12px rgba(85, 216, 121, 0.6);
         }
 
-        /* Featured project */
+        /* Featured projects */
+
+        .project-list {
+            display: grid;
+            gap: 24px;
+        }
 
         .project-card {
             overflow: hidden;
@@ -821,7 +826,7 @@
         <header class="hero">
             <div class="container">
                 <div class="eyebrow">
-                    Automation &amp; Customer Support Systems
+                    AI Automation &amp; Customer Operations Systems
                 </div>
 
                 <h1>
@@ -830,8 +835,9 @@
 
                 <p class="hero-copy">
                     I combine nearly seven years of customer-support experience with
-                    workflow automation to build reliable systems for email operations,
-                    ticket management, data synchronization, and internal reporting.
+                    workflow automation and AI to build reliable systems for WhatsApp booking
+                    and payment operations, email support, data synchronization, and
+                    internal reporting.
                 </p>
 
                 <div class="button-row">
@@ -857,7 +863,112 @@
 
         <section id="work">
             <div class="container">
-                <div class="section-label">Featured Project</div>
+                <div class="section-label">Selected Projects</div>
+                <p class="section-intro">
+                    Two independently tested automation systems built around real customer
+                    operations—one AI-assisted and conversational, one deterministic-first
+                    and ticketing-focused.
+                </p>
+
+                <div class="project-list">
+                    <article class="project-card" aria-labelledby="amihan-title">
+                        <div class="project-main">
+                            <div class="project-heading">
+                                <div>
+                                    <a
+                                        href="https://app.notion.com/p/3c8856513bb08139b74eda8fa9742604"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="project-link"
+                                        aria-label="Open the Amihan case study in Notion"
+                                    >
+                                        <h2 class="project-title" id="amihan-title">Amihan</h2>
+                                        <div class="project-subtitle">
+                                            AI-Powered WhatsApp Booking &amp; Payment Operations System
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="status">
+                                    <span class="status-dot" aria-hidden="true"></span>
+                                    Live end-to-end MVP · verified
+                                </div>
+                            </div>
+
+                            <p class="project-description">
+                                <strong>Amihan</strong> is an AI-powered WhatsApp booking and
+                                payment-operations system for tourism businesses. It turns
+                                natural-language guest messages into structured Airtable records
+                                and staff actions through a real WhatsApp Business number,
+                                self-hosted n8n, OpenAI, and Airtable.
+                            </p>
+
+                            <p class="project-description">
+                                OpenAI interprets language; <strong>n8n and Airtable remain
+                                authoritative</strong> for availability, booking, and payment
+                                state. The verified flow includes duplicate protection and a
+                                human review gate before a booking becomes confirmed.
+                            </p>
+
+                            <div class="pill-list" aria-label="Amihan technology stack">
+                                <span class="pill">Self-hosted n8n</span>
+                                <span class="pill">Meta WhatsApp Cloud API</span>
+                                <span class="pill">OpenAI</span>
+                                <span class="pill">Airtable</span>
+                                <span class="pill">JavaScript</span>
+                                <span class="pill">Docker</span>
+                                <span class="pill">Cloudflare</span>
+                            </div>
+
+                            <div class="button-row">
+                                <a
+                                    href="https://app.notion.com/p/3c8856513bb08139b74eda8fa9742604"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="button button-primary"
+                                >
+                                    View Full Case Study →
+                                </a>
+                                <a
+                                    href="https://github.com/jdbautista-automations"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="button button-secondary"
+                                >
+                                    GitHub Profile
+                                </a>
+                            </div>
+
+                            <p class="project-note">
+                                Verified with a real WhatsApp user in a demonstration environment.
+                                The core transaction flow is live; permanent cloud hosting and the
+                                v5.2 post-completion router remain planned production-hardening work.
+                            </p>
+                        </div>
+
+                        <div
+                            class="proof-grid"
+                            id="results"
+                            aria-label="Amihan verified end-to-end MVP results"
+                        >
+                            <div class="proof-item">
+                                <span class="proof-value">Live</span>
+                                <span class="proof-label">real-device WhatsApp guest journey</span>
+                            </div>
+                            <div class="proof-item">
+                                <span class="proof-value">7 stages</span>
+                                <span class="proof-label">availability inquiry through final confirmation</span>
+                            </div>
+                            <div class="proof-item">
+                                <span class="proof-value">0 duplicates</span>
+                                <span class="proof-label">from repeated booking requests</span>
+                            </div>
+                            <div class="proof-item">
+                                <span class="proof-value">2 paths</span>
+                                <span class="proof-label">employee approval and rejection verified</span>
+                            </div>
+                        </div>
+                    </article>
 
                 <article class="project-card">
                     <div class="project-main">
@@ -933,7 +1044,7 @@
                         </p>
                     </div>
 
-                    <div class="proof-grid" id="results" aria-label="Validated batch test results">
+                    <div class="proof-grid" aria-label="ANNA validated batch test results">
                         <div class="proof-item">
                             <span class="proof-value">15</span>
                             <span class="proof-label">messages processed in one execution</span>
@@ -952,6 +1063,7 @@
                         </div>
                     </div>
                 </article>
+                </div>
             </div>
         </section>
 
@@ -1194,7 +1306,8 @@
                         “Automate what is predictable. Use AI where understanding is required.”
                     </p>
                     <small>
-                        ANNA v2 proves the deterministic foundation. ANNA v3 is where AI begins.
+                        ANNA v2 proves the deterministic foundation. Amihan adds AI interpretation
+                        while keeping booking and payment state rules-based.
                     </small>
                 </div>
             </div>
@@ -1224,10 +1337,10 @@
                         </p>
 
                         <p>
-                            I now combine that operational experience with <strong>n8n, Gmail,
-                            Google Sheets, Google Apps Script, JavaScript, and Docker</strong> to
-                            build systems around real business processes—not simply connect one
-                            application to another.
+                            I now combine that operational experience with <strong>n8n, OpenAI,
+                            Meta WhatsApp Cloud API, Airtable, Gmail, Google Sheets, Google Apps
+                            Script, JavaScript, and Docker</strong> to build systems around real
+                            business processes—not simply connect one application to another.
                         </p>
 
                         <p>
@@ -1245,8 +1358,9 @@
                     <div class="section-label">Contact</div>
                     <h2>Let's build something useful.</h2>
                     <p>
-                        Available for freelance automation, customer-support workflow, email
-                        operations, data synchronization, and reporting projects.
+                        Available for freelance automation, AI-assisted WhatsApp booking and
+                        payment operations, customer-support workflows, email operations,
+                        data synchronization, and reporting projects.
                     </p>
 
                     <div class="contact-links">
@@ -1285,7 +1399,7 @@
 
     <footer>
         <div class="container footer-inner">
-            <span>© 2026 Joshua Bautista · Automation &amp; Customer Support Systems</span>
+            <span>© 2026 Joshua Bautista · AI Automation &amp; Customer Operations Systems</span>
             <a href="#">Back to top ↑</a>
         </div>
     </footer>
