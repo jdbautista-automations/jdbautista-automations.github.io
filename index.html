@@ -4,1403 +4,405 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Joshua Bautista | AI Automation & Customer Operations Systems</title>
+    <title>Joshua Bautista | AI Automation &amp; Workflow Systems</title>
     <meta
         name="description"
-        content="Joshua Bautista builds practical AI-assisted WhatsApp booking, payment-operations, and customer-support automation systems with n8n, OpenAI, Airtable, and JavaScript."
+        content="Joshua Bautista designs reliable AI-enabled automation and customer-operations systems with n8n, OpenAI, Airtable, Google Workspace, and JavaScript."
     >
-    <meta name="theme-color" content="#0b0b10">
+    <meta name="theme-color" content="#09090d">
     <link rel="canonical" href="https://jdbautista-automations.github.io/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jdbautista-automations.github.io/">
-    <meta property="og:title" content="Joshua Bautista | AI Automation & Customer Operations Systems">
+    <meta property="og:title" content="Joshua Bautista | AI Automation &amp; Workflow Systems">
     <meta
         property="og:description"
-        content="Live projects: Amihan, an AI-powered WhatsApp booking and payment-operations MVP, and ANNA v2.3.2, a production-verified support system."
+        content="Reliable automation systems for customer operations—designed from real business rules, tested end to end, and documented for remote teams."
     >
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Joshua Bautista | AI Automation & Customer Operations Systems">
+    <meta name="twitter:title" content="Joshua Bautista | AI Automation &amp; Workflow Systems">
     <meta
         name="twitter:description"
-        content="Live projects: Amihan, an AI-powered WhatsApp booking and payment-operations MVP, and ANNA v2.3.2, a production-verified support system."
+        content="AI-enabled automation, workflow engineering, and customer-operations systems."
     >
 
-    <style>
-        :root {
-            --background: #0b0b10;
-            --surface: #111016;
-            --surface-raised: #17141d;
-            --surface-soft: #131119;
-            --text: #f5f3f7;
-            --text-soft: #b8b3bf;
-            --text-muted: #918b98;
-            --border: #2d2934;
-            --border-strong: #413949;
-            --accent: #c987ff;
-            --accent-strong: #a75de0;
-            --accent-soft: rgba(169, 93, 224, 0.14);
-            --success: #8ee6aa;
-            --success-strong: #55d879;
-            --warning: #ffe79d;
-            --max-width: 1120px;
-            --radius-lg: 22px;
-            --radius-md: 14px;
-            --shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-width: 320px;
-            font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
-                "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        a:focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: 4px;
-            border-radius: 6px;
-        }
-
-        .container {
-            width: min(var(--max-width), 92%);
-            margin: 0 auto;
-        }
-
-        .skip-link {
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            z-index: 999;
-            padding: 10px 14px;
-            background: var(--text);
-            color: #111;
-            border-radius: 8px;
-            transform: translateY(-160%);
-            transition: transform 0.2s ease;
-        }
-
-        .skip-link:focus {
-            transform: translateY(0);
-        }
-
-        /* Navigation */
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(11, 11, 16, 0.9);
-            border-bottom: 1px solid rgba(45, 41, 52, 0.85);
-            backdrop-filter: blur(14px);
-        }
-
-        .nav-inner {
-            min-height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-        }
-
-        .logo {
-            font-size: 1.05rem;
-            font-weight: 850;
-            letter-spacing: 0.01em;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 26px;
-            color: var(--text-soft);
-            font-size: 0.94rem;
-        }
-
-        .nav-links a {
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Shared components */
-
-        section {
-            padding: 92px 0;
-            border-top: 1px solid #211f28;
-        }
-
-        .section-label {
-            color: var(--accent);
-            font-size: 0.78rem;
-            font-weight: 850;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            max-width: 820px;
-            font-size: clamp(2rem, 4vw, 3.35rem);
-            line-height: 1.1;
-            letter-spacing: -0.045em;
-            margin-bottom: 18px;
-        }
-
-        .section-intro {
-            max-width: 760px;
-            color: var(--text-soft);
-            font-size: 1.04rem;
-            margin-bottom: 42px;
-        }
-
-        .button-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 13px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            padding: 12px 20px;
-            border: 1px solid var(--border-strong);
-            border-radius: 10px;
-            font-weight: 780;
-            transition: transform 0.2s ease, border-color 0.2s ease,
-                color 0.2s ease, background 0.2s ease;
-        }
-
-        .button-primary {
-            background: #f4f0f7;
-            border-color: #f4f0f7;
-            color: #111;
-        }
-
-        .button-primary:hover {
-            background: #fff;
-            border-color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .button-secondary:hover {
-            border-color: var(--accent-strong);
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .pill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-        }
-
-        .pill {
-            padding: 7px 12px;
-            border: 1px solid #393241;
-            border-radius: 999px;
-            background: #121017;
-            color: #cbc5d1;
-            font-size: 0.84rem;
-        }
-
-        /* Hero */
-
-        .hero {
-            position: relative;
-            overflow: hidden;
-            padding: 118px 0 104px;
-            background:
-                radial-gradient(circle at 78% 18%, rgba(159, 75, 220, 0.2), transparent 34%),
-                radial-gradient(circle at 12% 84%, rgba(95, 55, 150, 0.14), transparent 32%);
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 420px;
-            height: 420px;
-            right: -210px;
-            bottom: -250px;
-            border: 1px solid rgba(201, 135, 255, 0.16);
-            border-radius: 50%;
-            box-shadow:
-                0 0 0 80px rgba(201, 135, 255, 0.025),
-                0 0 0 160px rgba(201, 135, 255, 0.018);
-            pointer-events: none;
-        }
-
-        .eyebrow {
-            color: var(--accent);
-            font-size: 0.84rem;
-            font-weight: 850;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            max-width: 940px;
-            font-size: clamp(3.1rem, 7.5vw, 6.4rem);
-            line-height: 0.98;
-            letter-spacing: -0.06em;
-            margin-bottom: 28px;
-        }
-
-        .hero-copy {
-            max-width: 760px;
-            color: var(--text-soft);
-            font-size: clamp(1.08rem, 2vw, 1.25rem);
-            margin-bottom: 34px;
-        }
-
-        .hero-note {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: fit-content;
-            margin-top: 24px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .hero-note-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--success-strong);
-            box-shadow: 0 0 12px rgba(85, 216, 121, 0.6);
-        }
-
-        /* Featured projects */
-
-        .project-list {
-            display: grid;
-            gap: 24px;
-        }
-
-        .project-card {
-            overflow: hidden;
-            background: linear-gradient(145deg, var(--surface-raised), #100f15);
-            border: 1px solid #342e3c;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-        }
-
-        .project-main {
-            padding: 42px;
-        }
-
-        .project-heading {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 30px;
-            margin-bottom: 25px;
-        }
-
-        .project-title {
-            font-size: clamp(2.3rem, 5vw, 4rem);
-            line-height: 1;
-            letter-spacing: -0.05em;
-            margin-bottom: 10px;
-        }
-
-        .project-link {
-            display: inline-block;
-        }
-
-        .project-link .project-title,
-        .project-link .project-subtitle {
-            transition: color 0.2s ease;
-        }
-
-        .project-link:hover .project-title,
-        .project-link:hover .project-subtitle {
-            color: var(--accent);
-        }
-
-        .project-subtitle {
-            color: var(--accent);
-            font-weight: 760;
-        }
-
-        .status {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            padding: 8px 12px;
-            border: 1px solid rgba(85, 216, 121, 0.24);
-            border-radius: 999px;
-            background: rgba(85, 216, 121, 0.06);
-            color: var(--success);
-            font-size: 0.76rem;
-            font-weight: 850;
-            letter-spacing: 0.07em;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--success-strong);
-            box-shadow: 0 0 12px rgba(85, 216, 121, 0.55);
-        }
-
-        .project-description {
-            max-width: 850px;
-            color: var(--text-soft);
-            font-size: 1.05rem;
-            margin-bottom: 24px;
-        }
-
-        .project-description strong {
-            color: var(--text);
-        }
-
-        .project-main .pill-list {
-            margin-bottom: 30px;
-        }
-
-        .project-note {
-            margin-top: 22px;
-            padding: 15px 17px;
-            border-left: 3px solid var(--accent-strong);
-            background: rgba(169, 93, 224, 0.07);
-            color: #cbc5d0;
-            border-radius: 0 10px 10px 0;
-            font-size: 0.92rem;
-        }
-
-        .proof-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            border-top: 1px solid var(--border);
-            background: rgba(7, 7, 10, 0.34);
-        }
-
-        .proof-item {
-            padding: 28px 26px;
-            border-right: 1px solid var(--border);
-        }
-
-        .proof-item:last-child {
-            border-right: 0;
-        }
-
-        .proof-value {
-            display: block;
-            font-size: clamp(1.5rem, 3vw, 2.1rem);
-            font-weight: 850;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            margin-bottom: 7px;
-        }
-
-        .proof-label {
-            color: var(--text-muted);
-            font-size: 0.84rem;
-        }
-
-        /* Feature and capability cards */
-
-        .feature-grid,
-        .capability-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .feature,
-        .capability {
-            padding: 27px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-        }
-
-        .feature-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            margin-bottom: 18px;
-            border: 1px solid rgba(201, 135, 255, 0.24);
-            border-radius: 9px;
-            background: var(--accent-soft);
-            color: var(--accent);
-            font-size: 0.8rem;
-            font-weight: 850;
-        }
-
-        .feature h3,
-        .capability h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .feature p,
-        .capability p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Architecture */
-
-        .architecture {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-            align-items: stretch;
-        }
-
-        .architecture-step {
-            position: relative;
-            padding: 28px;
-            background: linear-gradient(150deg, #15121a, #100f15);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-        }
-
-        .architecture-step:not(:last-child)::after {
-            content: "→";
-            position: absolute;
-            top: 50%;
-            right: -23px;
-            z-index: 2;
-            width: 32px;
-            height: 32px;
-            display: grid;
-            place-items: center;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            background: var(--background);
-            color: var(--accent);
-            transform: translateY(-50%);
-        }
-
-        .architecture-label {
-            color: var(--accent);
-            font-size: 0.76rem;
-            font-weight: 850;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .architecture-step h3 {
-            font-size: 1.16rem;
-            margin-bottom: 9px;
-        }
-
-        .architecture-step p {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-        }
-
-        /* Timeline */
-
-        .timeline {
-            position: relative;
-            display: grid;
-            gap: 14px;
-        }
-
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 110px 1fr;
-            gap: 22px;
-            padding: 22px 24px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-
-        .timeline-item.current {
-            border-color: rgba(85, 216, 121, 0.34);
-            background: linear-gradient(120deg, rgba(85, 216, 121, 0.055), var(--surface));
-        }
-
-        .timeline-item.future {
-            border-color: rgba(201, 135, 255, 0.32);
-            background: linear-gradient(120deg, var(--accent-soft), var(--surface));
-        }
-
-        .timeline-version {
-            color: var(--accent);
-            font-weight: 850;
-        }
-
-        .timeline-item.current .timeline-version {
-            color: var(--success);
-        }
-
-        .timeline-copy strong {
-            display: block;
-            margin-bottom: 3px;
-        }
-
-        .timeline-copy span {
-            color: var(--text-muted);
-            font-size: 0.93rem;
-        }
-
-        /* Approach and about */
-
-        .quote {
-            max-width: 900px;
-            padding: 38px;
-            border-left: 3px solid var(--accent-strong);
-            border-radius: 0 14px 14px 0;
-            background: var(--surface);
-        }
-
-        .quote p {
-            font-size: clamp(1.55rem, 3.2vw, 2.55rem);
-            line-height: 1.25;
-            letter-spacing: -0.035em;
-        }
-
-        .quote small {
-            display: block;
-            margin-top: 18px;
-            color: var(--text-muted);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 0.75fr 1.25fr;
-            gap: 64px;
-        }
-
-        .about-heading {
-            color: var(--accent);
-            font-size: 1.55rem;
-            line-height: 1.25;
-        }
-
-        .about-text {
-            color: var(--text-soft);
-        }
-
-        .about-text p:not(:last-child) {
-            margin-bottom: 18px;
-        }
-
-        .about-text strong {
-            color: var(--text);
-        }
-
-        /* Contact */
-
-        .contact-card {
-            padding: 44px;
-            background: linear-gradient(145deg, var(--surface-raised), #100f15);
-            border: 1px solid #342e3c;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-        }
-
-        .contact-card h2 {
-            max-width: 720px;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            line-height: 1.05;
-            letter-spacing: -0.05em;
-            margin-bottom: 16px;
-        }
-
-        .contact-card > p {
-            max-width: 690px;
-            color: var(--text-soft);
-            margin-bottom: 28px;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            min-height: 45px;
-            padding: 10px 15px;
-            border: 1px solid var(--border-strong);
-            border-radius: 10px;
-            color: #d5d0da;
-            transition: transform 0.2s ease, border-color 0.2s ease,
-                color 0.2s ease;
-        }
-
-        .contact-link:hover {
-            border-color: var(--accent-strong);
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        footer {
-            padding: 34px 0;
-            border-top: 1px solid #211f28;
-            color: #77717f;
-            font-size: 0.88rem;
-        }
-
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .footer-inner a:hover {
-            color: var(--accent);
-        }
-
-        /* Responsive */
-
-        @media (max-width: 900px) {
-            .proof-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .proof-item:nth-child(2) {
-                border-right: 0;
-            }
-
-            .proof-item:nth-child(-n + 2) {
-                border-bottom: 1px solid var(--border);
-            }
-
-            .architecture {
-                grid-template-columns: 1fr;
-            }
-
-            .architecture-step:not(:last-child)::after {
-                content: "↓";
-                top: auto;
-                right: 50%;
-                bottom: -23px;
-                transform: translateX(50%);
-            }
-        }
-
-        @media (max-width: 720px) {
-            .nav-inner {
-                min-height: 66px;
-            }
-
-            .nav-links {
-                gap: 14px;
-                font-size: 0.84rem;
-            }
-
-            .nav-links a:nth-child(2) {
-                display: none;
-            }
-
-            .hero {
-                padding: 82px 0;
-            }
-
-            section {
-                padding: 72px 0;
-            }
-
-            .project-main,
-            .contact-card {
-                padding: 28px;
-            }
-
-            .project-heading {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .feature-grid,
-            .capability-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 26px;
-            }
-
-            .timeline-item {
-                grid-template-columns: 1fr;
-                gap: 6px;
-            }
-
-            .quote {
-                padding: 28px;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                gap: 8px;
-            }
-        }
-
-        @media (max-width: 470px) {
-            .nav-links a:first-child {
-                display: none;
-            }
-
-            .proof-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .proof-item {
-                border-right: 0;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .proof-item:last-child {
-                border-bottom: 0;
-            }
-
-            .button,
-            .contact-link {
-                width: 100%;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
-
 <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <nav aria-label="Primary navigation">
+    <nav class="site-nav" aria-label="Primary navigation">
         <div class="container nav-inner">
-            <a href="#" class="logo" aria-label="Joshua Bautista home">
-                Joshua Bautista
+            <a class="brand" href="#top" aria-label="Joshua Bautista — home">
+                <span class="brand-mark" aria-hidden="true">JB</span>
+                <span>Joshua Bautista</span>
             </a>
 
             <div class="nav-links">
-                <a href="#work">Work</a>
-                <a href="#results">Results</a>
-                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a class="hide-mobile" href="#capabilities">Capabilities</a>
+                <a class="hide-mobile" href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
     <main id="main-content">
-        <header class="hero">
+        <header class="home-hero" id="top">
             <div class="container">
-                <div class="eyebrow">
-                    AI Automation &amp; Customer Operations Systems
-                </div>
-
+                <p class="eyebrow">AI Automation · Workflow Engineering · Customer Operations</p>
                 <h1>
-                    I build practical systems that remove repetitive operational work.
+                    I build practical systems that turn repetitive work into
+                    <span>reliable operations.</span>
                 </h1>
-
                 <p class="hero-copy">
-                    I combine nearly seven years of customer-support experience with
-                    workflow automation and AI to build reliable systems for WhatsApp booking
-                    and payment operations, email support, data synchronization, and
-                    internal reporting.
+                    I combine nearly seven years of customer-support experience with workflow
+                    automation and AI to design around real business rules, customer conversations,
+                    and human decisions. Deterministic workflows handle predictable work; AI is
+                    introduced only where understanding adds genuine value.
                 </p>
 
                 <div class="button-row">
-                    <a
-                        href="https://app.notion.com/p/Joshua-Bautista-Portfolio-abb565134950426a801baac99f9d44a5"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="button button-primary"
-                    >
-                        View My Work
-                    </a>
-                    <a href="#contact" class="button button-secondary">
-                        Contact Me
-                    </a>
+                    <a class="button button-primary" href="#projects">Explore the projects →</a>
+                    <a class="button button-secondary" href="#contact">Discuss a workflow</a>
                 </div>
 
-                <div class="hero-note">
-                    <span class="hero-note-dot" aria-hidden="true"></span>
-                    Available for freelance automation and customer-support workflow projects
+                <div class="availability-line" aria-label="Professional profile">
+                    <span>Based in the Philippines</span>
+                    <span>International remote collaboration</span>
+                    <span>Documentation-led delivery</span>
                 </div>
             </div>
         </header>
 
-        <section id="work">
+        <section class="section" id="projects" aria-labelledby="projects-title">
             <div class="container">
-                <div class="section-label">Selected Projects</div>
+                <p class="section-label">Selected Projects</p>
+                <h2 class="section-title" id="projects-title">
+                    Two systems. Two different operational problems.
+                </h2>
                 <p class="section-intro">
-                    Two independently tested automation systems built around real customer
-                    operations—one AI-assisted and conversational, one deterministic-first
-                    and ticketing-focused.
+                    Each project is presented as a complete case study: the business problem,
+                    system design, tested behavior, limitations, and the next engineering phase.
+                    Neither is a concept-only mockup.
                 </p>
 
-                <div class="project-list">
-                    <article class="project-card" aria-labelledby="amihan-title">
-                        <div class="project-main">
-                            <div class="project-heading">
-                                <div>
-                                    <a
-                                        href="https://app.notion.com/p/3c8856513bb08139b74eda8fa9742604"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="project-link"
-                                        aria-label="Open the Amihan case study in Notion"
-                                    >
-                                        <h2 class="project-title" id="amihan-title">Amihan</h2>
-                                        <div class="project-subtitle">
-                                            AI-Powered WhatsApp Booking &amp; Payment Operations System
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="status">
-                                    <span class="status-dot" aria-hidden="true"></span>
-                                    Live end-to-end MVP · verified
-                                </div>
-                            </div>
-
-                            <p class="project-description">
-                                <strong>Amihan</strong> is an AI-powered WhatsApp booking and
-                                payment-operations system for tourism businesses. It turns
-                                natural-language guest messages into structured Airtable records
-                                and staff actions through a real WhatsApp Business number,
-                                self-hosted n8n, OpenAI, and Airtable.
-                            </p>
-
-                            <p class="project-description">
-                                OpenAI interprets language; <strong>n8n and Airtable remain
-                                authoritative</strong> for availability, booking, and payment
-                                state. The verified flow includes duplicate protection and a
-                                human review gate before a booking becomes confirmed.
-                            </p>
-
-                            <div class="pill-list" aria-label="Amihan technology stack">
-                                <span class="pill">Self-hosted n8n</span>
-                                <span class="pill">Meta WhatsApp Cloud API</span>
-                                <span class="pill">OpenAI</span>
-                                <span class="pill">Airtable</span>
-                                <span class="pill">JavaScript</span>
-                                <span class="pill">Docker</span>
-                                <span class="pill">Cloudflare</span>
-                            </div>
-
-                            <div class="button-row">
-                                <a
-                                    href="https://app.notion.com/p/3c8856513bb08139b74eda8fa9742604"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="button button-primary"
-                                >
-                                    View Full Case Study →
-                                </a>
-                                <a
-                                    href="https://github.com/jdbautista-automations"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="button button-secondary"
-                                >
-                                    GitHub Profile
-                                </a>
-                            </div>
-
-                            <p class="project-note">
-                                Verified with a real WhatsApp user in a demonstration environment.
-                                The core transaction flow is live; permanent cloud hosting and the
-                                v5.2 post-completion router remain planned production-hardening work.
-                            </p>
+                <div class="project-grid">
+                    <article class="project-card amihan">
+                        <div class="status">
+                            <span class="status-dot" aria-hidden="true"></span>
+                            Live end-to-end MVP verified
                         </div>
 
-                        <div
-                            class="proof-grid"
-                            id="results"
-                            aria-label="Amihan verified end-to-end MVP results"
-                        >
-                            <div class="proof-item">
-                                <span class="proof-value">Live</span>
-                                <span class="proof-label">real-device WhatsApp guest journey</span>
-                            </div>
-                            <div class="proof-item">
-                                <span class="proof-value">7 stages</span>
-                                <span class="proof-label">availability inquiry through final confirmation</span>
-                            </div>
-                            <div class="proof-item">
-                                <span class="proof-value">0 duplicates</span>
-                                <span class="proof-label">from repeated booking requests</span>
-                            </div>
-                            <div class="proof-item">
-                                <span class="proof-value">2 paths</span>
-                                <span class="proof-label">employee approval and rejection verified</span>
-                            </div>
-                        </div>
-                    </article>
-
-                <article class="project-card">
-                    <div class="project-main">
-                        <div class="project-heading">
-                            <div>
-                                <a
-                                    href="https://app.notion.com/p/ANNA-v2-Automated-Customer-Support-Ticketing-System-fd4e2506952c40478bef350619235e25"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="project-link"
-                                    aria-label="Open the ANNA v2 case study in Notion"
-                                >
-                                    <h2 class="project-title">ANNA v2</h2>
-                                    <div class="project-subtitle">
-                                        Automated Customer Support Ticketing System
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="status">
-                                <span class="status-dot" aria-hidden="true"></span>
-                                Production verified · v2.3.2
-                            </div>
-                        </div>
-
-                        <p class="project-description">
-                            <strong>ANNA v2.3.2</strong> is a self-hosted, conversation-aware
-                            customer-support ticketing and operations system. It converts incoming
-                            Gmail conversations into structured tickets, routes requests,
-                            maintains lifecycle and SLA data, and gives agents practical working
-                            queues in Google Sheets.
+                        <p class="project-kicker">AI-enabled booking operations</p>
+                        <h3>Amihan</h3>
+                        <p class="project-subtitle">
+                            AI-Powered WhatsApp Booking &amp; Payment Operations System
+                        </p>
+                        <p class="project-summary">
+                            A real WhatsApp journey from natural-language availability inquiry to
+                            pending reservation, payment-proof handoff, Airtable employee review,
+                            and final guest confirmation.
                         </p>
 
-                        <p class="project-description">
-                            The system is <strong>deterministic-first</strong>: predictable work is
-                            handled through explicit business rules, while the architecture remains
-                            ready for an AI intelligence layer in ANNA v3. ANNA v2 is AI-ready,
-                            but it is not presented as AI-powered.
+                        <p class="project-origin">
+                            <strong>Scenario inspiration:</strong> the fictional Amihan Coastal
+                            Lodge—a tourism business where delayed replies can quietly become lost bookings.
                         </p>
 
-                        <div class="pill-list" aria-label="Technology stack">
+                        <div class="mini-proof-grid" aria-label="Amihan proof points">
+                            <div class="mini-proof">
+                                <strong>Real device</strong>
+                                <span>Inbound and outbound WhatsApp journey</span>
+                            </div>
+                            <div class="mini-proof">
+                                <strong>10 passed</strong>
+                                <span>Core live-flow verification checks</span>
+                            </div>
+                            <div class="mini-proof">
+                                <strong>Human review</strong>
+                                <span>Controlled payment approval or rejection</span>
+                            </div>
+                            <div class="mini-proof">
+                                <strong>Guarded state</strong>
+                                <span>Duplicate booking and repeat-review protection</span>
+                            </div>
+                        </div>
+
+                        <div class="pill-list" aria-label="Amihan technology stack">
                             <span class="pill">Self-hosted n8n</span>
-                            <span class="pill">Gmail</span>
-                            <span class="pill">Google Sheets</span>
-                            <span class="pill">Google Apps Script</span>
+                            <span class="pill">WhatsApp Cloud API</span>
+                            <span class="pill">OpenAI</span>
+                            <span class="pill">Airtable</span>
                             <span class="pill">JavaScript</span>
                             <span class="pill">Docker</span>
                         </div>
 
                         <div class="button-row">
                             <a
-                                href="https://app.notion.com/p/ANNA-v2-Automated-Customer-Support-Ticketing-System-fd4e2506952c40478bef350619235e25"
+                                class="button button-primary"
+                                href="https://app.notion.com/p/3c8856513bb08139b74eda8fa9742604?pvs=204"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="button button-primary"
                             >
-                                View Full Case Study →
+                                View Amihan case study →
                             </a>
                             <a
+                                class="button button-secondary"
                                 href="https://github.com/jdbautista-automations"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="button button-secondary"
                             >
                                 GitHub Profile
                             </a>
                         </div>
+                    </article>
 
-                        <p class="project-note">
-                            Portfolio demonstration environment using test customer data. Workflow
-                            rules, departments, schedules, SLAs, and ticket conventions are
-                            configurable for different business requirements.
+                    <article class="project-card anna">
+                        <div class="status">
+                            <span class="status-dot" aria-hidden="true"></span>
+                            Production verified · v2.3.2
+                        </div>
+
+                        <p class="project-kicker">Deterministic customer operations</p>
+                        <h3>ANNA</h3>
+                        <p class="project-subtitle">
+                            Automated Customer Support Ticketing System
                         </p>
-                    </div>
+                        <p class="project-summary">
+                            A self-hosted Gmail-to-operations system with conversation continuity,
+                            routing, lifecycle and SLA rules, agent queues, reporting, auditability,
+                            and cross-month ticket authority.
+                        </p>
 
-                    <div class="proof-grid" aria-label="ANNA validated batch test results">
-                        <div class="proof-item">
-                            <span class="proof-value">15</span>
-                            <span class="proof-label">messages processed in one execution</span>
+                        <p class="project-origin">
+                            <strong>Name inspiration:</strong> the familiar idea of a dependable
+                            receptionist named Anna—receiving every request, keeping context, and
+                            directing work to the right place.
+                        </p>
+
+                        <div class="mini-proof-grid" aria-label="ANNA proof points">
+                            <div class="mini-proof">
+                                <strong>15</strong>
+                                <span>Messages processed in one verified execution</span>
+                            </div>
+                            <div class="mini-proof">
+                                <strong>12 + 3</strong>
+                                <span>New conversations + existing replies</span>
+                            </div>
+                            <div class="mini-proof">
+                                <strong>0</strong>
+                                <span>Duplicate tickets in the validated batch</span>
+                            </div>
+                            <div class="mini-proof">
+                                <strong>9m 19.919s</strong>
+                                <span>Measured full-batch baseline</span>
+                            </div>
                         </div>
-                        <div class="proof-item">
-                            <span class="proof-value">12 + 3</span>
-                            <span class="proof-label">new tickets + existing replies</span>
+
+                        <div class="pill-list" aria-label="ANNA technology stack">
+                            <span class="pill">Self-hosted n8n</span>
+                            <span class="pill">Gmail</span>
+                            <span class="pill">Google Sheets</span>
+                            <span class="pill">Apps Script</span>
+                            <span class="pill">JavaScript</span>
+                            <span class="pill">Docker</span>
                         </div>
-                        <div class="proof-item">
-                            <span class="proof-value">0</span>
-                            <span class="proof-label">duplicate tickets in the validated batch</span>
+
+                        <div class="button-row">
+                            <a
+                                class="button button-primary"
+                                href="https://app.notion.com/p/fd4e2506952c40478bef350619235e25?pvs=204"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View ANNA case study →
+                            </a>
+                            <a
+                                class="button button-secondary"
+                                href="https://github.com/jdbautista-automations"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                GitHub Profile
+                            </a>
                         </div>
-                        <div class="proof-item">
-                            <span class="proof-value">9m 20s</span>
-                            <span class="proof-label">full-batch execution baseline</span>
-                        </div>
-                    </div>
-                </article>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section aria-labelledby="features-title">
+        <section class="section" id="capabilities" aria-labelledby="capabilities-title">
             <div class="container">
-                <div class="section-label">Production Capabilities</div>
-                <h2 class="section-title" id="features-title">
-                    More than Gmail connected to a spreadsheet.
+                <p class="section-label">Capabilities</p>
+                <h2 class="section-title" id="capabilities-title">
+                    What I bring to an automation project.
                 </h2>
                 <p class="section-intro">
-                    ANNA maintains conversation state, enforces ticket lifecycle rules,
-                    synchronizes operational data, and presents agent-facing workspaces.
-                </p>
-
-                <div class="feature-grid">
-                    <article class="feature">
-                        <span class="feature-number">01</span>
-                        <h3>Conversation-aware ticketing</h3>
-                        <p>
-                            Gmail Thread IDs and a global Conversation_Index distinguish new
-                            requests from replies and prevent duplicate ticket creation across
-                            monthly ticket databases.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <span class="feature-number">02</span>
-                        <h3>Rules-based routing and intake</h3>
-                        <p>
-                            Incoming messages are processed chronologically, routed to Support,
-                            Billing, Sales, or Manual Review, labeled in Gmail, and registered with
-                            structured Ticket IDs.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <span class="feature-number">03</span>
-                        <h3>Agent operations</h3>
-                        <p>
-                            TODAY'S QUEUE and FOLLOW_UP provide editable operational views with
-                            clickable Gmail-linked Ticket IDs, controlled assignments, statuses,
-                            and Last Agent Reply tracking.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <span class="feature-number">04</span>
-                        <h3>Lifecycle, SLA, and after-hours handling</h3>
-                        <p>
-                            Guarded status transitions, reopen logic, business-calendar duration,
-                            pending-time tracking, acknowledgements, cooldown rules, and automatic
-                            closure are handled consistently.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <span class="feature-number">05</span>
-                        <h3>Customer and management data</h3>
-                        <p>
-                            Customer Master aggregates ticket history, while the client-facing
-                            Dashboard reports operational status, department, priority, and aging
-                            information from the active reporting month.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <span class="feature-number">06</span>
-                        <h3>Reliability and traceability</h3>
-                        <p>
-                            Locking, schema guardrails, audit records, cross-sheet resolution,
-                            settings-driven scheduling, and persistent Docker storage protect the
-                            system from common operational failures.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section aria-labelledby="architecture-title">
-            <div class="container">
-                <div class="section-label">Current Architecture</div>
-                <h2 class="section-title" id="architecture-title">
-                    Deterministic automation from inbox to agent action.
-                </h2>
-                <p class="section-intro">
-                    n8n handles scheduled intake and workflow orchestration. Google Apps Script
-                    enforces the operational rules around the Sheets-based ticketing layer.
-                </p>
-
-                <div class="architecture">
-                    <article class="architecture-step">
-                        <div class="architecture-label">Intake</div>
-                        <h3>Gmail + n8n</h3>
-                        <p>
-                            Settings-driven business-hours and after-hours schedulers fetch unread
-                            messages in controlled batches and normalize them for processing.
-                        </p>
-                    </article>
-
-                    <article class="architecture-step">
-                        <div class="architecture-label">Operations</div>
-                        <h3>Apps Script + Sheets</h3>
-                        <p>
-                            Ticket lifecycle, cross-month lookup, customer synchronization,
-                            agent edits, maintenance, audit logging, and reporting are managed here.
-                        </p>
-                    </article>
-
-                    <article class="architecture-step">
-                        <div class="architecture-label">Human work</div>
-                        <h3>Queues + Gmail threads</h3>
-                        <p>
-                            Agents work from prioritized operational views and open the authoritative
-                            Gmail conversation directly through each linked Ticket ID.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section aria-labelledby="evolution-title">
-            <div class="container">
-                <div class="section-label">Project Evolution</div>
-                <h2 class="section-title" id="evolution-title">
-                    Built iteratively, tested as a system.
-                </h2>
-                <p class="section-intro">
-                    Each release added a distinct operational layer without replacing the proven
-                    deterministic foundation.
-                </p>
-
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-version">v1–v1.5</div>
-                        <div class="timeline-copy">
-                            <strong>Proof of concept and reliability foundation</strong>
-                            <span>Initial Gmail-to-ticket flow followed by architecture improvements.</span>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-version">v2.0</div>
-                        <div class="timeline-copy">
-                            <strong>Deterministic ticketing foundation</strong>
-                            <span>Conversation detection, routing, labeling, ticket creation, and existing-ticket updates.</span>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-version">v2.1</div>
-                        <div class="timeline-copy">
-                            <strong>Customer and conversation data operations</strong>
-                            <span>Customer Master Database and global Conversation_Index.</span>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-version">v2.2</div>
-                        <div class="timeline-copy">
-                            <strong>Lifecycle, SLA, and cross-month continuity</strong>
-                            <span>Lifecycle timestamps, metrics, after-hours behavior, rollover, and automatic closure.</span>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-version">v2.3</div>
-                        <div class="timeline-copy">
-                            <strong>Agent-facing operations</strong>
-                            <span>Materialized queues, editable assignments and statuses, Last Agent Reply, guardrails, audit, and dashboard.</span>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item current">
-                        <div class="timeline-version">v2.3.2</div>
-                        <div class="timeline-copy">
-                            <strong>Current production-verified release</strong>
-                            <span>Settings-driven scheduling, batch-capacity validation, production cutover, and final operational presentation.</span>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item future">
-                        <div class="timeline-version">v3.0</div>
-                        <div class="timeline-copy">
-                            <strong>Planned AI intelligence layer</strong>
-                            <span>Intent understanding, summaries, extraction, prioritization, response assistance, and escalation signals.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section aria-labelledby="capabilities-title">
-            <div class="container">
-                <div class="section-label">Capabilities</div>
-                <h2 class="section-title" id="capabilities-title">What I build</h2>
-                <p class="section-intro">
-                    Practical automation systems focused on real business rules, customer
-                    operations, and information flow.
+                    The tools change. The work remains the same: understand the operation, model
+                    the state, connect the systems, protect the critical decisions, and make the
+                    result usable by the people doing the work.
                 </p>
 
                 <div class="capability-grid">
-                    <article class="capability">
-                        <h3>⚙️ Business Process Automation</h3>
-                        <p>Automate repetitive operational workflows and rules-based processes.</p>
+                    <article class="capability-card">
+                        <span class="capability-number">01</span>
+                        <h3>Workflow Engineering</h3>
+                        <p>Translate business rules into structured, maintainable automations with clear branches and ownership.</p>
                     </article>
-
-                    <article class="capability">
-                        <h3>📧 Email &amp; Customer Support Automation</h3>
-                        <p>Process, route, organize, and track customer conversations reliably.</p>
+                    <article class="capability-card">
+                        <span class="capability-number">02</span>
+                        <h3>AI-Enabled Operations</h3>
+                        <p>Use language models for intent, extraction, and conversation—without giving them authority over critical state.</p>
                     </article>
-
-                    <article class="capability">
-                        <h3>🔄 Data Synchronization</h3>
-                        <p>Keep operational information consistent across tools and databases.</p>
+                    <article class="capability-card">
+                        <span class="capability-number">03</span>
+                        <h3>Customer Support Systems</h3>
+                        <p>Design around real conversations, queues, routing, escalation, agent work, and customer continuity.</p>
                     </article>
-
-                    <article class="capability">
-                        <h3>📊 Reporting &amp; Internal Workflows</h3>
-                        <p>Build dashboards, work queues, audit trails, and maintenance processes.</p>
+                    <article class="capability-card">
+                        <span class="capability-number">04</span>
+                        <h3>Data &amp; State Design</h3>
+                        <p>Keep identifiers, linked records, lifecycle state, and system authority consistent across connected tools.</p>
                     </article>
-
-                    <article class="capability">
-                        <h3>🛡️ Workflow Reliability</h3>
-                        <p>Design validation, guardrails, concurrency protection, and recoverable operations.</p>
+                    <article class="capability-card">
+                        <span class="capability-number">05</span>
+                        <h3>Human-in-the-Loop Control</h3>
+                        <p>Place clear staff review and decision points where automation should assist rather than decide.</p>
                     </article>
-
-                    <article class="capability">
-                        <h3>🤖 AI-assisted Business Processes</h3>
-                        <p>Introduce AI where natural-language understanding provides genuine value.</p>
+                    <article class="capability-card">
+                        <span class="capability-number">06</span>
+                        <h3>Reliability &amp; Handoff</h3>
+                        <p>Test edge cases, document limitations, preserve auditability, and make remote collaboration easier.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section aria-labelledby="approach-title">
+        <section class="section" aria-labelledby="principles-title">
             <div class="container">
-                <div class="section-label">My Approach</div>
-                <div class="quote">
-                    <p id="approach-title">
+                <p class="section-label">How I Work</p>
+                <h2 class="section-title" id="principles-title">
+                    Operations first. Technology second.
+                </h2>
+                <p class="section-intro">
+                    My customer-support background shapes how I build: for the exception, the
+                    handoff, and the person who has to operate the system after deployment.
+                </p>
+
+                <div class="principle-grid">
+                    <article class="principle-card">
+                        <h3>Start with operational reality</h3>
+                        <p>I map the actual journey, business rules, failure points, and human responsibilities before designing the workflow.</p>
+                    </article>
+                    <article class="principle-card">
+                        <h3>Separate understanding from authority</h3>
+                        <p>AI can interpret language. Deterministic rules and authoritative records should control transactions and lifecycle state.</p>
+                    </article>
+                    <article class="principle-card">
+                        <h3>Test beyond the happy path</h3>
+                        <p>Duplicate requests, repeated decisions, cross-period records, late replies, and post-completion messages reveal the real system.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="approach-title">
+            <div class="container">
+                <div class="approach-panel">
+                    <p class="section-label">My Approach</p>
+                    <blockquote id="approach-title">
                         “Automate what is predictable. Use AI where understanding is required.”
-                    </p>
-                    <small>
-                        ANNA v2 proves the deterministic foundation. Amihan adds AI interpretation
-                        while keeping booking and payment state rules-based.
-                    </small>
-                </div>
-            </div>
-        </section>
-
-        <section id="about">
-            <div class="container">
-                <div class="about-grid">
-                    <div>
-                        <div class="section-label">About Me</div>
-                        <h2 class="about-heading">
-                            Customer Support → Business Automation
-                        </h2>
-                    </div>
-
-                    <div class="about-text">
-                        <p>
-                            I'm Joshua Bautista, a customer-support professional and business
-                            automation builder based in the Philippines.
-                        </p>
-
-                        <p>
-                            I have nearly seven years of customer-support experience across
-                            collections, food delivery, telecommunications, sales, technical
-                            support, and e-commerce. That background gives me a practical view of
-                            the repetitive administrative work happening behind customer service.
-                        </p>
-
-                        <p>
-                            I now combine that operational experience with <strong>n8n, OpenAI,
-                            Meta WhatsApp Cloud API, Airtable, Gmail, Google Sheets, Google Apps
-                            Script, JavaScript, and Docker</strong> to build systems around real
-                            business processes—not simply connect one application to another.
-                        </p>
-
-                        <p>
-                            My goal is to help teams spend less time managing the process around
-                            their work and more time resolving customer and business needs.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <div class="contact-card">
-                    <div class="section-label">Contact</div>
-                    <h2>Let's build something useful.</h2>
+                    </blockquote>
                     <p>
-                        Available for freelance automation, AI-assisted WhatsApp booking and
-                        payment operations, customer-support workflows, email operations,
-                        data synchronization, and reporting projects.
+                        ANNA proves the deterministic operational foundation. Amihan shows how AI
+                        interpretation can sit on top of guarded booking and payment state.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about" aria-labelledby="about-title">
+            <div class="container about-grid">
+                <div>
+                    <p class="section-label">About Me</p>
+                    <h2 class="about-heading" id="about-title">
+                        Customer Support → AI Automation &amp; Operations
+                    </h2>
+                </div>
+
+                <div class="about-copy">
+                    <p>
+                        I’m Joshua Bautista, an automation builder based in the Philippines with
+                        nearly seven years of customer-support experience across collections, food
+                        delivery, telecommunications, sales, technical support, and e-commerce.
+                    </p>
+                    <p>
+                        That background gives me a practical view of the administrative work around
+                        customer service: monitoring conversations, maintaining records, handling
+                        exceptions, coordinating handoffs, and keeping the customer informed.
+                    </p>
+                    <p>
+                        I now combine that operational perspective with <strong>n8n, OpenAI, Meta
+                        WhatsApp Cloud API, Airtable, Gmail, Google Sheets, Google Apps Script,
+                        JavaScript, Docker, and API integrations</strong> to build systems around
+                        real work—not simply connect one application to another.
+                    </p>
+                    <p>
+                        My goal is to help teams spend less time managing the process around their
+                        work and more time resolving customer and business needs. I work best in
+                        clear, documentation-led environments where progress, decisions,
+                        limitations, and next steps remain visible across time zones.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="contact-panel">
+                    <p class="section-label">Contact</p>
+                    <h2 id="contact-title">Let’s make the operation easier to run.</h2>
+                    <p>
+                        Available for remote automation, workflow engineering, AI-enabled customer
+                        operations, WhatsApp systems, support workflows, data synchronization,
+                        human-review processes, and reporting projects.
                     </p>
 
                     <div class="contact-links">
-                        <a href="mailto:joshuaisonfaya@gmail.com" class="contact-link">
-                            📧 Email
-                        </a>
+                        <a class="button button-primary" href="mailto:joshuaisonfaya@gmail.com">Email Joshua</a>
                         <a
-                            href="https://github.com/jdbautista-automations"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="contact-link"
-                        >
-                            🧑‍💻 GitHub
-                        </a>
-                        <a
-                            href="https://www.facebook.com/jdbautistaautomations/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="contact-link"
-                        >
-                            📘 Facebook
-                        </a>
-                        <a
+                            class="button button-secondary"
                             href="https://www.upwork.com/freelancers/~01811f71e224a9a5d6?mp_source=share"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="contact-link"
-                        >
-                            💼 Upwork
-                        </a>
+                        >Upwork</a>
+                        <a
+                            class="button button-secondary"
+                            href="https://github.com/jdbautista-automations"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >GitHub</a>
+                        <a
+                            class="button button-secondary"
+                            href="https://www.facebook.com/jdbautistaautomations/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Facebook</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="container footer-inner">
-            <span>© 2026 Joshua Bautista · AI Automation &amp; Customer Operations Systems</span>
-            <a href="#">Back to top ↑</a>
+            <span>© 2026 Joshua Bautista · AI Automation &amp; Workflow Systems</span>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="data-deletion.html">Data deletion</a>
+                <a href="#top">Back to top ↑</a>
+            </div>
         </div>
     </footer>
 </body>
