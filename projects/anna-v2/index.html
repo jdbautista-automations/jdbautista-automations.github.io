@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ANNA v2.3.2 Case Study | Joshua Bautista</title>
+    <meta
+        name="description"
+        content="ANNA v2.3.2 is a production-verified, self-hosted customer-support ticketing and operations system built with n8n, Gmail, Google Sheets, Apps Script, JavaScript, and Docker."
+    >
+    <meta name="theme-color" content="#09090d">
+    <link rel="canonical" href="https://jdbautista-automations.github.io/projects/anna-v2/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://jdbautista-automations.github.io/projects/anna-v2/">
+    <meta property="og:title" content="ANNA v2.3.2 — Automated Customer Support Ticketing System">
+    <meta
+        property="og:description"
+        content="A deterministic-first, production-verified customer-support operations system with conversation continuity, lifecycle rules, agent queues, reporting, and auditability."
+    >
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ANNA v2.3.2 Case Study">
+    <meta
+        name="twitter:description"
+        content="Production-verified customer-support automation. AI-ready by design, not AI-powered."
+    >
+
+    <link rel="stylesheet" href="../../assets/styles.css">
+</head>
+<body class="theme-anna">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+        <div class="container nav-inner">
+            <a class="brand" href="../../" aria-label="Joshua Bautista portfolio">
+                <span class="brand-mark" aria-hidden="true">JB</span>
+                <span>Joshua Bautista</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a class="hide-mobile" href="#architecture">Architecture</a>
+                <a class="hide-mobile" href="#verification">Verification</a>
+                <a href="../../">Portfolio</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <div class="container breadcrumb">
+            <a href="../../">Portfolio</a> / ANNA v2.3.2
+        </div>
+
+        <header class="page-hero" id="top">
+            <div class="container">
+                <div class="status">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    Production verified · Current release v2.3.2
+                </div>
+
+                <h1><span>ANNA</span> v2.3.2</h1>
+                <p class="page-subtitle">Automated Customer Support Ticketing System</p>
+                <p class="page-summary">
+                    A self-hosted system that converts Gmail conversations into structured,
+                    trackable customer-support operations—from scheduled intake and conversation
+                    detection to agent queues, lifecycle rules, SLA tracking, reporting, audit,
+                    and maintenance.
+                </p>
+
+                <div class="pill-list" aria-label="Technology stack">
+                    <span class="pill">Self-hosted n8n</span>
+                    <span class="pill">Gmail</span>
+                    <span class="pill">Google Sheets</span>
+                    <span class="pill">Google Apps Script</span>
+                    <span class="pill">JavaScript</span>
+                    <span class="pill">Docker / WSL</span>
+                </div>
+
+                <div class="button-row">
+                    <a class="button button-primary" href="#overview">Read the case study →</a>
+                    <a
+                        class="button button-secondary"
+                        href="https://app.notion.com/p/fd4e2506952c40478bef350619235e25?pvs=204"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >View original Notion study</a>
+                </div>
+
+                <div class="proof-grid" aria-label="ANNA production snapshot">
+                    <div class="proof-item">
+                        <span class="proof-value">15</span>
+                        <span class="proof-label">messages processed in one verified execution</span>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-value">12 + 3</span>
+                        <span class="proof-label">new conversations + existing replies</span>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-value">0</span>
+                        <span class="proof-label">duplicate tickets in the validated batch</span>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-value">9m 19.919s</span>
+                        <span class="proof-label">measured full-batch execution baseline</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="section" id="overview" aria-labelledby="overview-title">
+            <div class="container split">
+                <div class="sticky-heading">
+                    <p class="section-label">Project Overview</p>
+                    <h2 id="overview-title">Deterministic first. AI-ready by design.</h2>
+                </div>
+
+                <div class="prose">
+                    <p>
+                        <strong>ANNA</strong> handles the predictable administrative work around
+                        customer-support email: monitoring messages, preserving conversation state,
+                        routing requests, registering tickets, synchronizing records, supporting
+                        agent action, and maintaining lifecycle and reporting data.
+                    </p>
+                    <p>
+                        Without that operational layer, teams repeatedly decide whether a message is
+                        new, search for earlier context, update multiple records, and manually keep
+                        email and ticket state aligned. ANNA converts those repeated decisions into
+                        explicit, auditable rules.
+                    </p>
+                    <p>
+                        <strong>ANNA v2.3.2 is AI-ready, not AI-powered.</strong> Ticket identity,
+                        conversation authority, routing, lifecycle, SLA calculations, and database
+                        state are deterministic. Natural-language intelligence is deliberately
+                        reserved for ANNA v3.
+                    </p>
+
+                    <div class="callout">
+                        <strong>Portfolio-safe demonstration</strong>
+                        The system uses test customer data. Departments, labels, schedules, SLAs,
+                        ticket formats, and workflow rules are configurable for different business
+                        requirements.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="architecture" aria-labelledby="architecture-title">
+            <div class="container">
+                <p class="section-label">Current Architecture</p>
+                <h2 class="section-title" id="architecture-title">
+                    From unread email to authoritative agent work.
+                </h2>
+                <p class="section-intro">
+                    n8n owns scheduled intake and orchestration. Google Apps Script enforces the
+                    operational rules around the Sheets-based ticketing and agent layer.
+                </p>
+
+                <div class="flow" aria-label="ANNA workflow architecture">
+                    <article class="flow-step">
+                        <span class="flow-number">01 · Schedule</span>
+                        <h3>Controlled intake</h3>
+                        <p>Business-hours processing runs every 10 minutes; after-hours processing runs hourly.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">02 · Gmail</span>
+                        <h3>Unread batch</h3>
+                        <p>Up to 15 unread messages are normalized, validated, and sorted chronologically.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">03 · Resolve</span>
+                        <h3>Conversation authority</h3>
+                        <p>Thread IDs and Conversation_Index determine whether the message is new or existing.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">04 · New</span>
+                        <h3>Route and register</h3>
+                        <p>New conversations receive a department, Gmail label, Ticket ID, and monthly record.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">05 · Existing</span>
+                        <h3>Update in place</h3>
+                        <p>Replies resolve across monthly databases and update the authoritative ticket.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">06 · Operate</span>
+                        <h3>Agent and maintenance layer</h3>
+                        <p>Queues, lifecycle, SLA, reporting, audit, and daily maintenance stay synchronized.</p>
+                    </article>
+                </div>
+
+                <div class="callout mt-24">
+                    <strong>Two time rules, two different purposes</strong>
+                    Automatic closure eligibility is <strong>7 calendar days</strong>. The
+                    <strong>12-hour</strong> rule is the after-hours reply cooldown—not an
+                    auto-close threshold. Daily maintenance runs at 5:00 AM.
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="capabilities-title">
+            <div class="container">
+                <p class="section-label">Production Capabilities</p>
+                <h2 class="section-title" id="capabilities-title">
+                    More than Gmail connected to a spreadsheet.
+                </h2>
+                <p class="section-intro">
+                    ANNA maintains state across conversations, monthly databases, agent edits, and
+                    maintenance cycles while keeping the original Gmail thread authoritative and accessible.
+                </p>
+
+                <div class="card-grid">
+                    <article class="detail-card">
+                        <span class="card-index">01 · CONVERSATION</span>
+                        <h3>Conversation-aware ticketing</h3>
+                        <p>Gmail Thread IDs and a global Conversation_Index prevent replies from becoming duplicate tickets.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">02 · ROUTING</span>
+                        <h3>Rules-based intake</h3>
+                        <p>Messages are processed chronologically and routed to configurable departments with matching Gmail labels.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">03 · AGENT WORK</span>
+                        <h3>Editable operational queues</h3>
+                        <p>TODAY’S QUEUE and FOLLOW_UP expose assignments, statuses, Last Agent Reply, and linked source conversations.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">04 · LIFECYCLE</span>
+                        <h3>SLA and after-hours handling</h3>
+                        <p>Guarded transitions, reopen logic, pending duration, acknowledgements, cooldowns, and auto-close follow explicit rules.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">05 · REPORTING</span>
+                        <h3>Customer and management data</h3>
+                        <p>Customer Master consolidates history while the Dashboard reports status, department, priority, and aging.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">06 · RELIABILITY</span>
+                        <h3>Guardrails and traceability</h3>
+                        <p>Document locking, schema checks, audit records, cross-sheet lookup, and persistent storage protect operations.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="data-title">
+            <div class="container">
+                <p class="section-label">Operational Data Layer</p>
+                <h2 class="section-title" id="data-title">
+                    One authoritative record, several useful views.
+                </h2>
+                <p class="section-intro">
+                    Google Sheets is the current persistence and agent-operations layer. Ticket
+                    identity and lifecycle rules are kept conceptually separate from the storage
+                    choice so the datastore can evolve later.
+                </p>
+
+                <div class="data-model">
+                    <article class="data-node">
+                        <h3>Monthly Tickets</h3>
+                        <p>Authoritative ticket records with identity, customer, lifecycle, SLA, activity, and closure data.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>Conversation_Index</h3>
+                        <p>Global thread-to-ticket resolution across monthly ticket databases.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>Customer Master</h3>
+                        <p>Consolidated ticket counts and customer history without inflating totals on replies.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>TODAY’S QUEUE</h3>
+                        <p>Materialized workspace for NEW, OPEN, and CUSTOMER REPLIED work.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>FOLLOW_UP</h3>
+                        <p>Focused operational workspace for PENDING tickets that need later action.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>Dashboard + Audit</h3>
+                        <p>Management reporting plus traceable setup, assignment, status, guardrail, and recovery activity.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="verification" aria-labelledby="verification-title">
+            <div class="container">
+                <p class="section-label">Validated 15-Message Test</p>
+                <h2 class="section-title" id="verification-title">
+                    Tested as a system, not one message at a time.
+                </h2>
+                <p class="section-intro">
+                    The production-verification run exercised the configured Gmail fetch limit and
+                    mixed new and existing conversations in the same execution.
+                </p>
+
+                <div class="status-table-wrap">
+                    <table class="status-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Test condition</th>
+                                <th scope="col">Observed behavior</th>
+                                <th scope="col">Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12 brand-new conversations</td>
+                                <td>12 unique tickets were routed, linked, registered, and added to TODAY’S QUEUE.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>3 replies to existing conversations</td>
+                                <td>All three updated their authoritative tickets instead of creating duplicates.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Cross-month reply</td>
+                                <td>Conversation_Index resolved a reply to its ticket stored in another monthly database.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>After-hours execution</td>
+                                <td>New tickets and existing replies received their correct eligible acknowledgements.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Customer Master reconciliation</td>
+                                <td>Ticket totals increased by exactly 12; the three replies did not inflate counts.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Abrupt host shutdown recovery</td>
+                                <td>Docker, n8n, and the persistent n8n_data volume recovered without stored workflow loss.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout mt-24">
+                    <strong>Measured baseline, not a throughput promise</strong>
+                    The 9m 19.919s execution is an observed baseline. Capacity depends on traffic
+                    distribution, connected-service latency, and future optimization; it does not
+                    prove that the system is limited to 15 messages per 10 minutes.
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="ticket-id-title">
+            <div class="container split">
+                <div class="sticky-heading">
+                    <p class="section-label">Feature Spotlight</p>
+                    <h2 id="ticket-id-title">A Ticket ID designed for actual agent use.</h2>
+                </div>
+
+                <div class="prose">
+                    <p>
+                        ANNA does not generate an arbitrary number. Its structured identifier can
+                        communicate the department, creation date, and daily sequence while linking
+                        directly back to the source Gmail conversation.
+                    </p>
+
+                    <div class="callout">
+                        <strong>SUP-08092026-0001</strong>
+                        <strong>SUP</strong> = Support · <strong>08092026</strong> = creation date ·
+                        <strong>0001</strong> = first Support ticket for that date.
+                    </div>
+
+                    <p class="mt-20">
+                        Demonstration codes include SUP for Support, BIL for Billing, SAL for Sales,
+                        and MAN for Manual Review. The prefix, date format, sequence length, and
+                        numbering scope are all configurable per client requirement.
+                    </p>
+                    <p>
+                        Ticket IDs in the operational sheets are clickable hyperlinks, allowing an
+                        agent to move from the structured database directly to the authoritative
+                        Gmail thread.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="evolution" aria-labelledby="evolution-title">
+            <div class="container">
+                <p class="section-label">Project Evolution</p>
+                <h2 class="section-title" id="evolution-title">
+                    Each release added an operational layer.
+                </h2>
+                <p class="section-intro">
+                    The project evolved without discarding the deterministic foundation that had
+                    already been tested.
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">v1</div>
+                        <div class="timeline-copy">
+                            <strong>Proof of concept</strong>
+                            <span>Initial Gmail-to-ticket workflow.</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">v1.5</div>
+                        <div class="timeline-copy">
+                            <strong>Reliability foundation</strong>
+                            <span>Architecture and operational hardening.</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">v2.0</div>
+                        <div class="timeline-copy">
+                            <strong>Deterministic ticketing</strong>
+                            <span>Conversation detection, routing, labeling, creation, and updates.</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">v2.1</div>
+                        <div class="timeline-copy">
+                            <strong>Customer and conversation data</strong>
+                            <span>Customer Master Database and global Conversation_Index.</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">v2.2</div>
+                        <div class="timeline-copy">
+                            <strong>Lifecycle and continuity</strong>
+                            <span>SLA, after-hours, rollover, automatic closure, and cross-month handling.</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">v2.3</div>
+                        <div class="timeline-copy">
+                            <strong>Agent-facing operations</strong>
+                            <span>Queues, assignments, statuses, Last Agent Reply, guardrails, audit, and Dashboard.</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item current">
+                        <div class="timeline-marker">v2.3.2</div>
+                        <div class="timeline-copy">
+                            <strong>Current production-verified release</strong>
+                            <span>Settings-driven scheduling, batch validation, production cutover, and final operational presentation.</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item future">
+                        <div class="timeline-marker">v3.0</div>
+                        <div class="timeline-copy">
+                            <strong>Planned first AI intelligence layer</strong>
+                            <span>Intent, summaries, extraction, prioritization, response assistance, and escalation signals.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="boundary-title">
+            <div class="container">
+                <p class="section-label">Current Boundary</p>
+                <h2 class="section-title" id="boundary-title">
+                    What is complete now—and what belongs to v3.
+                </h2>
+                <p class="section-intro">
+                    The distinction is deliberate: AI will extend the system without becoming the
+                    authority for identity, lifecycle, or operational state.
+                </p>
+
+                <div class="status-table-wrap">
+                    <table class="status-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Layer</th>
+                                <th scope="col">Capabilities</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Deterministic operations</td>
+                                <td>Intake, routing, ticketing, conversation continuity, lifecycle, SLA, after-hours, queues, reporting, audit, and maintenance.</td>
+                                <td><span class="result-pass">Implemented</span></td>
+                            </tr>
+                            <tr>
+                                <td>Understanding and extraction</td>
+                                <td>Intent, sentiment, urgency, priority recommendations, summaries, and entity extraction.</td>
+                                <td><span class="result-future">Planned · v3</span></td>
+                            </tr>
+                            <tr>
+                                <td>Agent assistance</td>
+                                <td>Draft responses, escalation signals, knowledge assistance, related-ticket detection, and trend summaries.</td>
+                                <td><span class="result-future">Planned · v3</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="demonstrates-title">
+            <div class="container">
+                <p class="section-label">What This Demonstrates</p>
+                <h2 class="section-title" id="demonstrates-title">
+                    Transferable workflow-engineering ability.
+                </h2>
+                <p class="section-intro">
+                    The project is evidence of process modeling and operational engineering—not
+                    simply familiarity with one automation tool.
+                </p>
+
+                <div class="card-grid">
+                    <article class="detail-card"><h3>Business-rule translation</h3><p>Turn a manual customer-support process into explicit, testable automation logic.</p></article>
+                    <article class="detail-card"><h3>Conversation-state design</h3><p>Preserve authority across replies, monthly databases, and customer history.</p></article>
+                    <article class="detail-card"><h3>Agent operations</h3><p>Design editable workspaces, lifecycle controls, source navigation, and reporting around human work.</p></article>
+                    <article class="detail-card"><h3>Reliability engineering</h3><p>Use guardrails, locking, audit, persistence, recovery, and regression testing.</p></article>
+                    <article class="detail-card"><h3>Capacity reasoning</h3><p>Measure batch behavior honestly and distinguish observed performance from throughput promises.</p></article>
+                    <article class="detail-card"><h3>Responsible AI planning</h3><p>Add intelligence only where language understanding helps while preserving deterministic authority.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="next-title">
+            <div class="container">
+                <div class="project-next">
+                    <div>
+                        <p class="section-label">Continue Exploring</p>
+                        <h2 id="next-title">See AI interpretation inside guarded operations.</h2>
+                        <p>
+                            Amihan applies natural-language understanding to a real WhatsApp booking
+                            journey while keeping availability, booking, payment, and employee-review state deterministic.
+                        </p>
+                    </div>
+                    <div class="button-row">
+                        <a class="button button-primary" href="../amihan/">View Amihan →</a>
+                        <a class="button button-secondary" href="../../">Back to portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span>© 2026 Joshua Bautista · ANNA v2.3.2 Case Study</span>
+            <div class="footer-links">
+                <a href="../../privacy-policy.html">Privacy</a>
+                <a href="../../data-deletion.html">Data deletion</a>
+                <a href="#top">Back to top ↑</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
