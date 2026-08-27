@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amihan Case Study | Joshua Bautista</title>
+    <meta
+        name="description"
+        content="Amihan is a live end-to-end WhatsApp booking and payment-operations MVP built with self-hosted n8n, Meta WhatsApp Cloud API, OpenAI, Airtable, JavaScript, Docker, and Cloudflare."
+    >
+    <meta name="theme-color" content="#09090d">
+    <link rel="canonical" href="https://jdbautista-automations.github.io/projects/amihan/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://jdbautista-automations.github.io/projects/amihan/">
+    <meta property="og:title" content="Amihan — AI-Powered WhatsApp Booking &amp; Payment Operations System">
+    <meta
+        property="og:description"
+        content="A verified real-device journey from availability inquiry to pending booking, payment-proof handoff, employee review, and final WhatsApp confirmation."
+    >
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Amihan Case Study">
+    <meta
+        name="twitter:description"
+        content="Live WhatsApp booking and payment operations with AI interpretation, guarded transaction state, and human review."
+    >
+
+    <link rel="stylesheet" href="../../assets/styles.css">
+</head>
+<body class="theme-amihan">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+        <div class="container nav-inner">
+            <a class="brand" href="../../" aria-label="Joshua Bautista portfolio">
+                <span class="brand-mark" aria-hidden="true">JB</span>
+                <span>Joshua Bautista</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a class="hide-mobile" href="#journey">Guest Journey</a>
+                <a class="hide-mobile" href="#verification">Verification</a>
+                <a href="../../">Portfolio</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <div class="container breadcrumb">
+            <a href="../../">Portfolio</a> / Amihan
+        </div>
+
+        <header class="page-hero" id="top">
+            <div class="container">
+                <div class="status">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    Live end-to-end MVP · Real-device verified
+                </div>
+
+                <h1><span>Amihan</span></h1>
+                <p class="page-subtitle">AI-Powered WhatsApp Booking &amp; Payment Operations System</p>
+                <p class="page-summary">
+                    A real WhatsApp Business journey that turns natural-language guest messages
+                    into verified availability, a guarded reservation, payment instructions,
+                    controlled employee review, and a synchronized final result.
+                </p>
+
+                <div class="pill-list" aria-label="Technology stack">
+                    <span class="pill">Self-hosted n8n</span>
+                    <span class="pill">Meta WhatsApp Cloud API</span>
+                    <span class="pill">OpenAI</span>
+                    <span class="pill">Airtable</span>
+                    <span class="pill">JavaScript</span>
+                    <span class="pill">Docker</span>
+                    <span class="pill">Cloudflare</span>
+                </div>
+
+                <div class="button-row">
+                    <a class="button button-primary" href="#overview">Read the case study →</a>
+                    <a
+                        class="button button-secondary"
+                        href="https://app.notion.com/p/3c8856513bb08139b74eda8fa9742604?pvs=204"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >View original Notion study</a>
+                </div>
+
+                <div class="proof-grid" aria-label="Amihan MVP snapshot">
+                    <div class="proof-item">
+                        <span class="proof-value">Real device</span>
+                        <span class="proof-label">verified inbound and outbound WhatsApp journey</span>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-value">7 tables</span>
+                        <span class="proof-label">linked Airtable operational model</span>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-value">10 passed</span>
+                        <span class="proof-label">core live-flow verification checks</span>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-value">1 planned fix</span>
+                        <span class="proof-label">post-completion conversation routing</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="section" id="overview" aria-labelledby="overview-title">
+            <div class="container split">
+                <div class="sticky-heading">
+                    <p class="section-label">Why Amihan Exists</p>
+                    <h2 id="overview-title">A delayed reply can quietly become a lost booking.</h2>
+                </div>
+
+                <div class="prose">
+                    <p>
+                        A guest rarely experiences tourism operations as a clean sequence of
+                        database actions. They ask conversational questions, change details,
+                        repeat themselves, send payment proof, and expect someone to respond before
+                        they continue searching elsewhere.
+                    </p>
+                    <p>
+                        Amihan is inspired by the fictional <strong>Amihan Coastal Lodge</strong>:
+                        a small tourism business where missed or delayed WhatsApp inquiries can mean
+                        lost revenue, while rushed manual handling can create duplicate reservations,
+                        oversold dates, incomplete records, or unverified payment confirmations.
+                    </p>
+                    <p>
+                        The system connects a real WhatsApp Business number to self-hosted n8n,
+                        OpenAI, and a linked Airtable model. It responds quickly to the guest while
+                        preserving explicit authority over inventory, bookings, payment state, and
+                        the employee decision.
+                    </p>
+
+                    <div class="callout">
+                        <strong>Understanding is not authority</strong>
+                        OpenAI interprets the guest’s language. n8n applies the workflow rules;
+                        Airtable remains the operational source of truth; and an employee—not the
+                        model—approves or rejects submitted payment proof. The core journey is live
+                        MVP verified. Permanent hosting and the designed v5.2 post-completion router
+                        remain future work.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="design" aria-labelledby="design-title">
+            <div class="container">
+                <p class="section-label">Operating Model</p>
+                <h2 class="section-title" id="design-title">
+                    AI interprets. Operational records decide.
+                </h2>
+                <p class="section-intro">
+                    The guest-facing workflow handles conversation and transaction orchestration.
+                    A separate Airtable-triggered admin workflow processes the employee’s payment
+                    decision and returns the correct result to the guest.
+                </p>
+
+                <div class="flow" aria-label="Amihan operating model">
+                    <article class="flow-step">
+                        <span class="flow-number">01 · Receive</span>
+                        <h3>Meta webhook</h3>
+                        <p>Messages from a real WhatsApp user arrive through the verified Meta webhook.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">02 · Resolve</span>
+                        <h3>Guest and context</h3>
+                        <p>n8n normalizes the payload and loads or creates the linked guest and conversation.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">03 · Understand</span>
+                        <h3>Intent and details</h3>
+                        <p>OpenAI extracts the request and relevant booking details from natural language.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">04 · Verify</span>
+                        <h3>Airtable state</h3>
+                        <p>Offerings, dates, capacity, existing bookings, settings, and conversation state are checked.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">05 · Decide</span>
+                        <h3>Guarded branches</h3>
+                        <p>Deterministic rules control reservation, duplicate protection, payment, and handoff behavior.</p>
+                    </article>
+                    <article class="flow-step">
+                        <span class="flow-number">06 · Complete</span>
+                        <h3>Guest or staff action</h3>
+                        <p>WhatsApp sends the response, or the admin workflow waits for and processes employee review.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="journey" aria-labelledby="journey-title">
+            <div class="container">
+                <p class="section-label">Verified Guest Journey</p>
+                <h2 class="section-title" id="journey-title">
+                    From availability question to controlled confirmation.
+                </h2>
+                <p class="section-intro">
+                    The live demonstration followed one coherent transaction path, including the
+                    repeat actions that commonly expose weak booking and payment workflows.
+                </p>
+
+                <div class="card-grid">
+                    <article class="detail-card">
+                        <span class="card-index">01 · INQUIRY</span>
+                        <h3>Understand the request</h3>
+                        <p>The guest asks naturally. Amihan resolves the person and conversation, checks the requested dates, and returns verified availability.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">02 · RESERVATION</span>
+                        <h3>Create a pending booking</h3>
+                        <p>A final capacity check reserves the units and creates a linked booking with a unique reference and Pending / Unpaid state.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">03 · DUPLICATE GUARD</span>
+                        <h3>Reuse the existing record</h3>
+                        <p>If the same request is repeated, the workflow returns the linked booking instead of reserving inventory or creating another record.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">04 · PAYMENT</span>
+                        <h3>Send configured instructions</h3>
+                        <p>Business Settings supply the method, account details, amount, booking reference, and demonstration warnings.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">05 · HANDOFF</span>
+                        <h3>Hold state during review</h3>
+                        <p>Submitted proof moves the conversation to Payment Verification / Human Handoff while the booking remains Pending / Unpaid.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">06 · DECISION</span>
+                        <h3>Let the employee decide</h3>
+                        <p>Approval produces Confirmed / Deposit Paid; rejection preserves Pending / Unpaid and returns the reviewer’s correction note.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">07 · REPEAT SAFETY</span>
+                        <h3>Process the decision once</h3>
+                        <p>A processed flag and state checks prevent a repeated approval or rejection from changing records or notifying the guest twice.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="data-title">
+            <div class="container">
+                <p class="section-label">Operational Data &amp; Human Authority</p>
+                <h2 class="section-title" id="data-title">
+                    Business configuration and transaction state stay connected.
+                </h2>
+                <p class="section-intro">
+                    Business-specific values live in Airtable rather than inside the automation.
+                    That keeps the workflow reusable while preserving linked records from the
+                    first guest message through the employee’s decision.
+                </p>
+
+                <div class="data-model">
+                    <article class="data-node">
+                        <h3>Business Settings</h3>
+                        <p>Payment configuration, currency, instructions, messaging, and demonstration controls.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>Offerings</h3>
+                        <p>The accommodation or tour catalog, pricing, capacity, amenities, and active status.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>Availability</h3>
+                        <p>Date-level units, rates, status, and links to the bookings using that inventory.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>Guests</h3>
+                        <p>WhatsApp identity, contact details, and relationships to conversations and reservations.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>Bookings</h3>
+                        <p>Dates, party size, totals, booking status, payment status, and linked operational records.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>Conversations</h3>
+                        <p>Latest messages, stage, extracted intent, summary, handoff state, and review fields.</p>
+                    </article>
+                    <article class="data-node">
+                        <h3>FAQs</h3>
+                        <p>Reusable business answers and policy information available to guest responses.</p>
+                    </article>
+                </div>
+
+                <div class="callout mt-24">
+                    <strong>Payment proof does not equal payment approval</strong>
+                    Receiving proof changes the conversation to a staff-review stage but does not
+                    confirm the booking. Only the employee’s Airtable decision authorizes the
+                    final booking and payment-state update.
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="verification" aria-labelledby="verification-title">
+            <div class="container">
+                <p class="section-label">Live Evidence</p>
+                <h2 class="section-title" id="verification-title">
+                    Ten core checks passed—and real testing found the next fix.
+                </h2>
+                <p class="section-intro">
+                    The MVP was tested through an actual WhatsApp user journey, not only with
+                    mocked workflow inputs. The same run verified delivery, data relationships,
+                    transaction rules, employee review, and repeat-action protection.
+                </p>
+
+                <div class="status-table-wrap">
+                    <table class="status-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Capability</th>
+                                <th scope="col">Observed evidence</th>
+                                <th scope="col">Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Inbound Meta webhook</td>
+                                <td>A real WhatsApp message reached the verified workflow endpoint.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Outbound WhatsApp delivery</td>
+                                <td>Workflow responses returned through Meta to the real user device.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Guest and conversation continuity</td>
+                                <td>Linked Airtable records were created and reused through the journey.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Availability and pending booking</td>
+                                <td>Verified units were reserved and a Pending / Unpaid booking was created.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Inventory update</td>
+                                <td>Availability reflected the reservation and resulting sold-out state.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Duplicate booking guard</td>
+                                <td>A repeated request reused the booking and reserved no additional units.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Payment instructions and proof handoff</td>
+                                <td>Configured instructions were sent and proof moved the conversation to human review.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Employee approval and rejection</td>
+                                <td>Airtable decisions automatically triggered the separate admin workflow.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Final confirmation</td>
+                                <td>Approval synchronized booking and payment state before notifying the guest.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Repeated decision guard</td>
+                                <td>The same processed employee decision did not update records or send twice.</td>
+                                <td><span class="result-pass">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Post-completion courtesy message</td>
+                                <td>A thank-you reused prior context and reopened availability; the confirmed transaction stayed unchanged.</td>
+                                <td><span class="result-planned">v5.2 designed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout mt-24">
+                    <strong>A conversational defect, not a transaction failure</strong>
+                    After confirmation, a celebratory thank-you was misread as another availability
+                    inquiry. No duplicate booking was created, no extra inventory was reserved,
+                    and the Confirmed / Deposit Paid state stayed safe. The designed v5.2 router
+                    will check completed state first: courtesy messages close cleanly; explicit new
+                    bookings begin a new journey; support, modification, or cancellation routes to
+                    the correct workflow or staff member; and ambiguous messages receive one
+                    clarifying question without reopening availability.
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="roadmap-title">
+            <div class="container">
+                <p class="section-label">Current Boundary &amp; Roadmap</p>
+                <h2 class="section-title" id="roadmap-title">
+                    Verified MVP now. Deliberate production hardening next.
+                </h2>
+                <p class="section-intro">
+                    The next phase is intentionally specific. It closes the behavior discovered in
+                    live testing, strengthens operations, and packages the model for reuse without
+                    describing future work as already delivered.
+                </p>
+
+                <div class="card-grid">
+                    <article class="detail-card">
+                        <span class="card-index">NEXT · CONVERSATION</span>
+                        <h3>Implement v5.2 routing</h3>
+                        <p>Add the state-aware post-completion router and regression-test courtesy, new-booking, support, cancellation, and ambiguous messages.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">NEXT · OPERATIONS</span>
+                        <h3>Media and observability</h3>
+                        <p>Retrieve and store receipt media or metadata, centralize workflow errors, and add operational alerts for staff.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">NEXT · HOSTING</span>
+                        <h3>Permanent deployment</h3>
+                        <p>Move beyond the temporary tunnel setup to a named Cloudflare tunnel or VPS-backed production environment.</p>
+                    </article>
+                    <article class="detail-card">
+                        <span class="card-index">NEXT · REUSE &amp; SCALE</span>
+                        <h3>Package the template</h3>
+                        <p>Formalize client onboarding and configuration, then add stronger concurrency controls or Redis queue mode when demand requires it.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="next-title">
+            <div class="container">
+                <div class="project-next">
+                    <div>
+                        <p class="section-label">Continue Exploring</p>
+                        <h2 id="next-title">See the deterministic operations foundation.</h2>
+                        <p>
+                            ANNA handles conversation continuity, lifecycle, SLA, agent workspaces,
+                            reporting, audit, and cross-month authority without an AI layer.
+                        </p>
+                    </div>
+                    <div class="button-row">
+                        <a class="button button-primary" href="../anna-v2/">View ANNA →</a>
+                        <a class="button button-secondary" href="../../">Back to portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span>© 2026 Joshua Bautista · Amihan Case Study</span>
+            <div class="footer-links">
+                <a href="../../privacy-policy.html">Privacy</a>
+                <a href="../../data-deletion.html">Data deletion</a>
+                <a href="#top">Back to top ↑</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
