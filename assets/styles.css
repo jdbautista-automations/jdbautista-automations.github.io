@@ -424,6 +424,19 @@ strong {
     color: var(--text-muted);
 }
 
+.project-origin {
+    min-height: 5.25em;
+    margin: -6px 0 27px;
+    padding-left: 14px;
+    border-left: 2px solid var(--card-accent, var(--accent));
+    color: var(--text-muted);
+    font-size: 0.86rem;
+}
+
+.project-origin strong {
+    color: var(--text-soft);
+}
+
 .mini-proof-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -562,6 +575,10 @@ strong {
     max-width: 740px;
     margin-bottom: 27px;
     color: var(--text-soft);
+}
+
+.contact-panel .section-label {
+    color: var(--accent);
 }
 
 .contact-links {
