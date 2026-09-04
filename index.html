@@ -7,7 +7,7 @@
     <title>Joshua Bautista | AI Automation &amp; Workflow Systems</title>
     <meta
         name="description"
-        content="Joshua Bautista designs reliable AI-enabled automation and customer-operations systems with n8n, OpenAI, Airtable, Google Workspace, and JavaScript."
+        content="Joshua Bautista designs reliable automation and customer-operations systems with HighLevel, n8n, OpenAI, Airtable, Google Workspace, and JavaScript."
     >
     <meta name="theme-color" content="#09090d">
     <link rel="canonical" href="https://jdbautista-automations.github.io/">
@@ -17,16 +17,48 @@
     <meta property="og:title" content="Joshua Bautista | AI Automation &amp; Workflow Systems">
     <meta
         property="og:description"
-        content="Reliable automation systems for customer operations—designed from real business rules, tested end to end, and documented for remote teams."
+        content="Three tested portfolio systems spanning CRM lead operations, AI-enabled booking, and deterministic customer support."
     >
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Joshua Bautista | AI Automation &amp; Workflow Systems">
     <meta
         name="twitter:description"
-        content="AI-enabled automation, workflow engineering, and customer-operations systems."
+        content="Automation, CRM workflow engineering, AI-enabled operations, and customer-support systems."
     >
 
     <link rel="stylesheet" href="assets/styles.css">
+
+    <style>
+        .project-card.oakspan {
+            --card-accent: #5b8cff;
+            grid-column: 1 / -1;
+        }
+
+        .project-card.oakspan .mini-proof-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .status.status-pending {
+            border-color: rgba(255, 231, 157, 0.28);
+            background: rgba(255, 231, 157, 0.065);
+            color: var(--warning);
+        }
+
+        .status.status-pending .status-dot {
+            background: var(--warning);
+            box-shadow: 0 0 12px rgba(255, 231, 157, 0.42);
+        }
+
+        @media (max-width: 940px) {
+            .project-card.oakspan {
+                grid-column: auto;
+            }
+
+            .project-card.oakspan .mini-proof-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+    </style>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -79,15 +111,80 @@
             <div class="container">
                 <p class="section-label">Selected Projects</p>
                 <h2 class="section-title" id="projects-title">
-                    Two systems. Two different operational problems.
+                    Three systems. Three different operational problems.
                 </h2>
                 <p class="section-intro">
-                    Each project is presented as a complete case study: the business problem,
-                    system design, tested behavior, limitations, and the next engineering phase.
-                    Neither is a concept-only mockup.
+                    The portfolio now covers CRM lead operations, AI-enabled booking and payment,
+                    and deterministic customer-support operations. Each case study documents the
+                    business problem, system design, tested behavior, safeguards, limitations, and
+                    the next engineering step rather than presenting a concept-only mockup.
                 </p>
 
                 <div class="project-grid">
+                    <article class="project-card oakspan">
+                        <div class="status status-pending">
+                            <span class="status-dot" aria-hidden="true"></span>
+                            Live HighLevel demo · final website-chat verification pending
+                        </div>
+
+                        <p class="project-kicker">CRM lead operations</p>
+                        <h3>Oakspan</h3>
+                        <p class="project-subtitle">
+                            Residential Roofing Intake &amp; Lead Operations System
+                        </p>
+                        <p class="project-summary">
+                            A simulated Dallas–Fort Worth roofing operation using HighLevel to
+                            coordinate website intake, social messaging, ZIP and qualification
+                            routing, human handoff, inspection scheduling, and opportunity-stage
+                            synchronization inside one CRM environment.
+                        </p>
+
+                        <p class="project-origin">
+                            <strong>Scenario inspiration:</strong> the fictional Oakspan Roofing &amp;
+                            Exteriors—a local-contractor portfolio environment built around the
+                            operational risks of missed inquiries, duplicate opportunities,
+                            uncertain service areas, and premature automation.
+                        </p>
+
+                        <div class="mini-proof-grid" aria-label="Oakspan proof points">
+                            <div class="mini-proof">
+                                <strong>10 workflows</strong>
+                                <span>Published and individually verified before website-chat launch</span>
+                            </div>
+                            <div class="mini-proof">
+                                <strong>3 channels</strong>
+                                <span>Website form, Messenger, and Instagram verified in HighLevel</span>
+                            </div>
+                            <div class="mini-proof">
+                                <strong>1 lifecycle</strong>
+                                <span>Inquiry through inspection booking and completion</span>
+                            </div>
+                            <div class="mini-proof">
+                                <strong>$0 spend</strong>
+                                <span>Controlled workflow and channel testing without outbound email spend</span>
+                            </div>
+                        </div>
+
+                        <div class="pill-list" aria-label="Oakspan technology stack">
+                            <span class="pill">HighLevel</span>
+                            <span class="pill">Website Form</span>
+                            <span class="pill">Live Chat</span>
+                            <span class="pill">Facebook Messenger</span>
+                            <span class="pill">Instagram DM</span>
+                            <span class="pill">GHL Calendars</span>
+                            <span class="pill">Opportunity Pipelines</span>
+                        </div>
+
+                        <div class="button-row">
+                            <a class="button button-primary" href="projects/oakspan/">
+                                View Oakspan case study →
+                            </a>
+                            <a class="button button-secondary" href="projects/oakspan/#live-demo">
+                                Try the live demo
+                            </a>
+                        </div>
+                    </article>
+
                     <article class="project-card amihan">
                         <div class="status">
                             <span class="status-dot" aria-hidden="true"></span>
@@ -253,8 +350,8 @@
                     </article>
                     <article class="capability-card">
                         <span class="capability-number">03</span>
-                        <h3>Customer Support Systems</h3>
-                        <p>Design around real conversations, queues, routing, escalation, agent work, and customer continuity.</p>
+                        <h3>Customer &amp; Lead Operations</h3>
+                        <p>Design around real conversations, lead intake, qualification, queues, routing, escalation, agent work, and customer continuity.</p>
                     </article>
                     <article class="capability-card">
                         <span class="capability-number">04</span>
@@ -312,7 +409,9 @@
                     </blockquote>
                     <p>
                         ANNA proves the deterministic operational foundation. Amihan shows how AI
-                        interpretation can sit on top of guarded booking and payment state.
+                        interpretation can sit on top of guarded booking and payment state. Oakspan
+                        applies the same control philosophy to multi-channel CRM lead intake,
+                        qualification, human handoff, scheduling, and opportunity progression.
                     </p>
                 </div>
             </div>
@@ -339,10 +438,10 @@
                         exceptions, coordinating handoffs, and keeping the customer informed.
                     </p>
                     <p>
-                        I now combine that operational perspective with <strong>n8n, OpenAI, Meta
-                        WhatsApp Cloud API, Airtable, Gmail, Google Sheets, Google Apps Script,
-                        JavaScript, Docker, and API integrations</strong> to build systems around
-                        real work—not simply connect one application to another.
+                        I now combine that operational perspective with <strong>HighLevel, n8n,
+                        OpenAI, Meta WhatsApp Cloud API, Airtable, Gmail, Google Sheets, Google Apps
+                        Script, JavaScript, Docker, and API integrations</strong> to build systems
+                        around real work—not simply connect one application to another.
                     </p>
                     <p>
                         My goal is to help teams spend less time managing the process around their
@@ -360,9 +459,9 @@
                     <p class="section-label">Contact</p>
                     <h2 id="contact-title">Let’s make the operation easier to run.</h2>
                     <p>
-                        Available for remote automation, workflow engineering, AI-enabled customer
-                        operations, WhatsApp systems, support workflows, data synchronization,
-                        human-review processes, and reporting projects.
+                        Available for remote automation, workflow engineering, HighLevel and CRM
+                        lead operations, AI-enabled customer operations, WhatsApp systems, support
+                        workflows, data synchronization, human-review processes, and reporting projects.
                     </p>
 
                     <div class="contact-links">
