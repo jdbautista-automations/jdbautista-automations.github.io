@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../../assets/styles.css">
 
     <style>
-        /* Amihan live-demo evidence block */
+        /* Amihan live-demo + evidence blocks */
         .live-demo {
             margin: 36px 0 28px;
             padding: clamp(20px, 3vw, 34px);
@@ -69,7 +69,8 @@
             box-shadow: 0 0 0 5px rgba(37, 211, 102, 0.12);
         }
 
-        .live-demo h3 {
+        .live-demo h3,
+        .evidence-sequence-header h3 {
             margin: 0 0 12px;
             font-size: clamp(1.45rem, 2.4vw, 2rem);
             line-height: 1.12;
@@ -139,8 +140,85 @@
             opacity: 0.72;
         }
 
+        .evidence-sequence {
+            margin: 34px 0 38px;
+        }
+
+        .evidence-sequence-header {
+            max-width: 850px;
+            margin-bottom: 20px;
+        }
+
+        .evidence-sequence-header > p:last-child {
+            margin-bottom: 0;
+        }
+
+        .evidence-stack {
+            display: grid;
+            gap: 20px;
+        }
+
+        .evidence-card {
+            margin: 0;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .evidence-image-link {
+            display: block;
+            padding: 10px;
+            background: #f4f6f7;
+        }
+
+        .evidence-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 11px;
+        }
+
+        .evidence-card figcaption {
+            padding: 16px 18px 18px;
+        }
+
+        .evidence-step {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            opacity: 0.66;
+        }
+
+        .evidence-card h4 {
+            margin: 0 0 7px;
+            font-size: 1.04rem;
+        }
+
+        .evidence-card p {
+            margin: 0;
+            line-height: 1.55;
+            opacity: 0.82;
+        }
+
+        .evidence-compare {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .evidence-note {
+            margin: 14px 2px 0;
+            font-size: 0.86rem;
+            opacity: 0.68;
+        }
+
         @media (max-width: 820px) {
-            .live-demo-grid {
+            .live-demo-grid,
+            .evidence-compare {
                 grid-template-columns: 1fr;
             }
 
@@ -156,6 +234,10 @@
                 align-items: flex-start;
                 flex-direction: column;
                 gap: 4px;
+            }
+
+            .evidence-image-link {
+                padding: 7px;
             }
         }
     </style>
@@ -438,8 +520,8 @@
                 </h2>
                 <p class="section-intro">
                     The MVP was tested through an actual WhatsApp user journey, not only with
-                    mocked workflow inputs. The one-minute recording below shows the same end-to-end
-                    run used to verify delivery, linked Airtable state, payment handoff, employee
+                    mocked workflow inputs. The one-minute recording and the Airtable state captures
+                    below document delivery, linked transaction state, payment handoff, employee
                     approval, and final confirmation on a real device.
                 </p>
 
@@ -489,6 +571,103 @@
                     </div>
                 </article>
 
+                <div class="evidence-sequence" aria-labelledby="transaction-evidence-title">
+                    <div class="evidence-sequence-header">
+                        <p class="live-demo-kicker">Transaction-state evidence</p>
+                        <h3 id="transaction-evidence-title">The booking changes only after human approval.</h3>
+                        <p>
+                            These captures come from the September 20, 2026 live test run. They show
+                            the same linked booking before approval, the payment-proof handoff waiting
+                            for a reviewer, and the final synchronized state after the employee decision.
+                        </p>
+                    </div>
+
+                    <div class="evidence-stack">
+                        <figure class="evidence-card">
+                            <a class="evidence-image-link" href="./assets/evidence/02-booking-detail.webp" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="./assets/evidence/02-booking-detail.webp"
+                                    loading="lazy"
+                                    alt="Expanded Airtable booking showing Joshua Bautista's Island-Hopping Tour reservation for September 20, 2026, one unit reserved, PHP 1,800 total, Pending booking status and Unpaid payment status."
+                                >
+                            </a>
+                            <figcaption>
+                                <span class="evidence-step">01 · Linked booking state</span>
+                                <h4>A reservation exists, but payment is not yet approved.</h4>
+                                <p>
+                                    The AI-created WhatsApp booking links the guest, Island-Hopping Tour,
+                                    September 20 availability, and conversation in one record. One unit is
+                                    reserved, reducing available capacity from 10 to 9, while the transaction
+                                    remains <strong>Pending / Unpaid</strong> at PHP 1,800.
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="evidence-card">
+                            <a class="evidence-image-link" href="./assets/evidence/03-payment-review.webp" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="./assets/evidence/03-payment-review.webp"
+                                    loading="lazy"
+                                    alt="Airtable conversation evidence showing Payment Proof intent, Payment Verification stage, Human Handoff status, human handoff enabled and Payment Review Decision set to Pending Review."
+                                >
+                            </a>
+                            <figcaption>
+                                <span class="evidence-step">02 · Human-review boundary</span>
+                                <h4>The system understands the proof without granting itself authority.</h4>
+                                <p>
+                                    The incoming message is classified as <strong>Payment Proof</strong> and
+                                    moves to <strong>Payment Verification / Human Handoff</strong>. The review
+                                    decision is still <strong>Pending Review</strong>; reviewer, note, timestamp,
+                                    and processed fields remain empty until a staff member acts.
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                        <div class="evidence-compare" aria-label="Booking state before and after employee approval">
+                            <figure class="evidence-card">
+                                <a class="evidence-image-link" href="./assets/evidence/01-booking-pending.webp" target="_blank" rel="noopener noreferrer">
+                                    <img
+                                        src="./assets/evidence/01-booking-pending.webp"
+                                        loading="lazy"
+                                        alt="Airtable booking row before payment approval showing Pending booking status and Unpaid payment status."
+                                    >
+                                </a>
+                                <figcaption>
+                                    <span class="evidence-step">03 · Before approval</span>
+                                    <h4>Pending / Unpaid stays authoritative.</h4>
+                                    <p>
+                                        Even after payment proof is submitted, the booking remains pending
+                                        and unpaid while the employee review is outstanding.
+                                    </p>
+                                </figcaption>
+                            </figure>
+
+                            <figure class="evidence-card">
+                                <a class="evidence-image-link" href="./assets/evidence/04-booking-confirmed.webp" target="_blank" rel="noopener noreferrer">
+                                    <img
+                                        src="./assets/evidence/04-booking-confirmed.webp"
+                                        loading="lazy"
+                                        alt="Airtable booking row after employee approval showing Confirmed booking status and Deposit Paid payment status."
+                                    >
+                                </a>
+                                <figcaption>
+                                    <span class="evidence-step">04 · After approval</span>
+                                    <h4>Confirmed / Deposit Paid is the authorized result.</h4>
+                                    <p>
+                                        After the employee approval workflow processes the decision, the
+                                        same booking moves to confirmed and deposit paid before the final
+                                        WhatsApp confirmation is sent.
+                                    </p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <p class="evidence-note">
+                        Sensitive WhatsApp identifiers are redacted in the portfolio captures. The remaining fields are retained to show the transaction-state changes clearly.
+                    </p>
+                </div>
+
                 <div class="status-table-wrap">
                     <table class="status-table">
                         <thead>
@@ -521,7 +700,7 @@
                             </tr>
                             <tr>
                                 <td>Inventory update</td>
-                                <td>Availability reflected the reservation and resulting sold-out state.</td>
+                                <td>Availability reflected the reservation by reducing the remaining units before confirmation.</td>
                                 <td><span class="result-pass">Passed</span></td>
                             </tr>
                             <tr>
@@ -587,7 +766,7 @@
                     <article class="detail-card">
                         <span class="card-index">NEXT · CONVERSATION</span>
                         <h3>Implement v5.2 routing</h3>
-                        <p>Add the state-aware post-completion router and regression-test courtesy, new-booking, support, cancellation, and ambiguous messages.</p>
+                        <p>Add the state-aware post-completion router, normalize partial or ambiguous date inputs before availability lookup, and regression-test courtesy, new-booking, support, cancellation, and ambiguous messages.</p>
                     </article>
                     <article class="detail-card">
                         <span class="card-index">NEXT · OPERATIONS</span>
