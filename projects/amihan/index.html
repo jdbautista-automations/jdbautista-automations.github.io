@@ -27,6 +27,138 @@
     >
 
     <link rel="stylesheet" href="../../assets/styles.css">
+
+    <style>
+        /* Amihan live-demo evidence block */
+        .live-demo {
+            margin: 36px 0 28px;
+            padding: clamp(20px, 3vw, 34px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at top right, rgba(37, 211, 102, 0.10), transparent 38%),
+                rgba(255, 255, 255, 0.035);
+            overflow: hidden;
+        }
+
+        .live-demo-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+            gap: clamp(22px, 4vw, 42px);
+            align-items: center;
+        }
+
+        .live-demo-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            opacity: 0.82;
+        }
+
+        .live-demo-kicker::before {
+            content: "";
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: #25d366;
+            box-shadow: 0 0 0 5px rgba(37, 211, 102, 0.12);
+        }
+
+        .live-demo h3 {
+            margin: 0 0 12px;
+            font-size: clamp(1.45rem, 2.4vw, 2rem);
+            line-height: 1.12;
+        }
+
+        .live-demo-copy > p {
+            margin: 0 0 18px;
+        }
+
+        .demo-proof-list {
+            display: grid;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .demo-proof-list li {
+            position: relative;
+            padding-left: 28px;
+            line-height: 1.5;
+        }
+
+        .demo-proof-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #25d366;
+            font-weight: 800;
+        }
+
+        .demo-player {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #050507;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+        }
+
+        .demo-player video {
+            display: block;
+            width: 100%;
+            max-height: 72vh;
+            background: #000;
+        }
+
+        .demo-caption {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            padding: 12px 14px;
+            font-size: 0.84rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.09);
+            opacity: 0.78;
+        }
+
+        .demo-caption strong {
+            opacity: 1;
+        }
+
+        .demo-note {
+            margin-top: 14px;
+            font-size: 0.88rem;
+            opacity: 0.72;
+        }
+
+        @media (max-width: 820px) {
+            .live-demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .live-demo-copy {
+                order: 1;
+            }
+
+            .demo-player {
+                order: 2;
+            }
+
+            .demo-caption {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+    </style>
 </head>
 <body class="theme-amihan">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -79,6 +211,7 @@
 
                 <div class="button-row">
                     <a class="button button-primary" href="#overview">Read the case study →</a>
+                    <a class="button button-secondary" href="#live-demo">Watch 1-minute live demo ↓</a>
                     <a
                         class="button button-secondary"
                         href="https://app.notion.com/p/3c8856513bb08139b74eda8fa9742604?pvs=204"
@@ -305,9 +438,56 @@
                 </h2>
                 <p class="section-intro">
                     The MVP was tested through an actual WhatsApp user journey, not only with
-                    mocked workflow inputs. The same run verified delivery, data relationships,
-                    transaction rules, employee review, and repeat-action protection.
+                    mocked workflow inputs. The one-minute recording below shows the same end-to-end
+                    run used to verify delivery, linked Airtable state, payment handoff, employee
+                    approval, and final confirmation on a real device.
                 </p>
+
+                <article class="live-demo" id="live-demo" aria-labelledby="live-demo-title">
+                    <div class="live-demo-grid">
+                        <div class="live-demo-copy">
+                            <p class="live-demo-kicker">Real-device verification</p>
+                            <h3 id="live-demo-title">Watch the booking complete end to end.</h3>
+                            <p>
+                                The recording begins with the first WhatsApp message from the test
+                                customer and follows the live transaction through availability,
+                                pending booking, payment review, an employee-set confirmation in
+                                Airtable, and the final WhatsApp confirmation.
+                            </p>
+
+                            <ul class="demo-proof-list" aria-label="What the demo verifies">
+                                <li>Real inbound and outbound WhatsApp messages through Meta</li>
+                                <li>Booking and conversation state carried through Airtable</li>
+                                <li>Payment proof held for human review instead of auto-approval</li>
+                                <li>Employee confirmation triggering the final guest message</li>
+                            </ul>
+
+                            <p class="demo-note">
+                                Demo footage was trimmed and accelerated to approximately one minute.
+                                Test data and a demonstration payment flow are used throughout.
+                            </p>
+                        </div>
+
+                        <div class="demo-player">
+                            <video
+                                controls
+                                playsinline
+                                preload="metadata"
+                                aria-label="Amihan end-to-end WhatsApp booking verification video"
+                            >
+                                <source
+                                    src="./assets/video/amihan-end-to-end-demo.mp4"
+                                    type="video/mp4"
+                                >
+                                Your browser does not support embedded MP4 video.
+                            </video>
+                            <div class="demo-caption">
+                                <span><strong>End-to-end verification</strong> · WhatsApp → Airtable → employee decision → WhatsApp</span>
+                                <span>~1 minute</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
 
                 <div class="status-table-wrap">
                     <table class="status-table">
