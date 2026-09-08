@@ -1137,6 +1137,18 @@ body.theme-highlevel .library-card .evidence-details {
     flex: 0 0 auto;
 }
 
+/* Desktop: reserve matching title and subtitle rows so every demo reads on the same baseline. */
+@media (min-width: 1121px) {
+    body.theme-highlevel .library-card h3 {
+        min-height: calc(3 * 1.04em);
+    }
+
+    body.theme-highlevel .library-card .demo-subtitle {
+        min-height: calc(3 * 1.45em);
+        line-height: 1.45;
+    }
+}
+
 @media (max-width: 680px) {
     body.theme-highlevel .library-card {
         height: auto;
