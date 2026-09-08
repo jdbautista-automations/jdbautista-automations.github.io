@@ -442,6 +442,73 @@
             font-size: 0.8rem;
         }
 
+        html.evidence-preview-open {
+            overflow: hidden;
+        }
+
+        body.theme-highlevel .evidence-details[open] {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 1200;
+            width: min(1120px, calc(100vw - 32px));
+            max-height: min(88vh, 900px);
+            margin: 0;
+            overflow-y: auto;
+            border: 1px solid var(--border-strong);
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at 82% 4%, rgba(91, 140, 255, 0.14), transparent 24rem),
+                linear-gradient(145deg, #15141b, #0d0c11);
+            box-shadow:
+                0 0 0 100vmax rgba(3, 3, 7, 0.84),
+                0 30px 100px rgba(0, 0, 0, 0.58);
+            transform: translate(-50%, -50%);
+            overscroll-behavior: contain;
+        }
+
+        body.theme-highlevel .evidence-details[open] > summary {
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            padding: 22px 26px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(13, 12, 17, 0.94);
+            backdrop-filter: blur(14px);
+        }
+
+        body.theme-highlevel .evidence-details > summary::after {
+            content: "↗";
+        }
+
+        body.theme-highlevel .evidence-details[open] > summary::after {
+            content: "×";
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            font-size: 1.35rem;
+            line-height: 1;
+        }
+
+        body.theme-highlevel .evidence-details[open] .evidence-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            padding: 20px;
+        }
+
+        body.theme-highlevel .evidence-details[open] .evidence-card {
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+        }
+
+        body.theme-highlevel .evidence-details[open] .evidence-media {
+            min-height: 220px;
+            padding: 10px;
+        }
+
+        body.theme-highlevel .evidence-details[open] .evidence-body {
+            padding: 18px 19px 20px;
+        }
+
         .roadmap-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -554,6 +621,30 @@
 
             .evidence-details > summary span {
                 display: none;
+            }
+
+            body.theme-highlevel .evidence-details[open] {
+                width: calc(100vw - 20px);
+                max-height: calc(100vh - 20px);
+                border-radius: 18px;
+            }
+
+            body.theme-highlevel .evidence-details[open] > summary {
+                align-items: center;
+                padding: 18px;
+            }
+
+            body.theme-highlevel .evidence-details[open] > summary span {
+                display: block;
+            }
+
+            body.theme-highlevel .evidence-details[open] .evidence-grid {
+                grid-template-columns: 1fr;
+                padding: 12px;
+            }
+
+            body.theme-highlevel .evidence-details[open] .evidence-media {
+                min-height: 0;
             }
         }
     </style>
@@ -759,7 +850,7 @@
                             CRM state is verified with synthetic test records.
                         </p>
                     </div>
-                    <div class="library-count">3 verified systems · evidence collapses on demand</div>
+                    <div class="library-count">3 verified systems · evidence opens in preview</div>
                 </div>
 
                 <div class="demo-grid">
@@ -788,7 +879,7 @@
                         </div>
 
                         <details class="evidence-details">
-                            <summary>View verified Solar evidence <span>4 screenshots · click to expand</span></summary>
+                            <summary>View verified Solar evidence <span>4 screenshots · opens preview</span></summary>
                             <div class="evidence-grid">
                                 <article class="evidence-card">
                                     <div class="evidence-media"><a href="assets/solar-01-workflow-routing.png" target="_blank" rel="noopener noreferrer"><img src="assets/solar-01-workflow-routing.png" alt="Solar qualification routing workflow in HighLevel" loading="lazy" decoding="async"></a></div>
@@ -835,7 +926,7 @@
                         </div>
 
                         <details class="evidence-details">
-                            <summary>View verified Dental evidence <span>4 screenshots · click to expand</span></summary>
+                            <summary>View verified Dental evidence <span>4 screenshots · opens preview</span></summary>
                             <div class="evidence-grid">
                                 <article class="evidence-card">
                                     <div class="evidence-media"><a href="assets/dental-01-booking-sync-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/dental-01-booking-sync-execution.png" alt="Dental booking sync execution log in HighLevel" loading="lazy" decoding="async"></a></div>
@@ -882,7 +973,7 @@
                         </div>
 
                         <details class="evidence-details">
-                            <summary>View verified Med Spa evidence <span>4 screenshots · click to expand</span></summary>
+                            <summary>View verified Med Spa evidence <span>4 screenshots · opens preview</span></summary>
                             <div class="evidence-grid">
                                 <article class="evidence-card">
                                     <div class="evidence-media"><a href="assets/medspa-01-no-show-recovery-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/medspa-01-no-show-recovery-execution.png" alt="Med Spa no-show recovery workflow execution log" loading="lazy" decoding="async"></a></div>
@@ -953,5 +1044,42 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        (() => {
+            const previews = Array.from(document.querySelectorAll('.evidence-details'));
+
+            const syncPageLock = () => {
+                document.documentElement.classList.toggle(
+                    'evidence-preview-open',
+                    previews.some((preview) => preview.open)
+                );
+            };
+
+            previews.forEach((preview) => {
+                preview.addEventListener('toggle', () => {
+                    if (preview.open) {
+                        previews.forEach((other) => {
+                            if (other !== preview) other.open = false;
+                        });
+                    }
+                    syncPageLock();
+                });
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key !== 'Escape') return;
+                previews.forEach((preview) => { preview.open = false; });
+                syncPageLock();
+            });
+
+            document.addEventListener('click', (event) => {
+                const openPreview = previews.find((preview) => preview.open);
+                if (!openPreview || openPreview.contains(event.target)) return;
+                openPreview.open = false;
+                syncPageLock();
+            });
+        })();
+    </script>
 </body>
 </html>
