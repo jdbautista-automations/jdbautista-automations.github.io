@@ -1110,6 +1110,48 @@ strong {
     }
 }
 
+/* HighLevel systems library: keep focused demo cards visually aligned. */
+body.theme-highlevel .demo-grid {
+    align-items: stretch;
+}
+
+body.theme-highlevel .library-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+body.theme-highlevel .library-card-top {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+
+body.theme-highlevel .library-card .pill-list {
+    margin: auto 0 0;
+    padding-top: 22px;
+}
+
+body.theme-highlevel .library-card .proof-chain,
+body.theme-highlevel .library-card .evidence-details {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 680px) {
+    body.theme-highlevel .library-card {
+        height: auto;
+    }
+
+    body.theme-highlevel .library-card-top {
+        display: block;
+    }
+
+    body.theme-highlevel .library-card .pill-list {
+        margin: 22px 0 0;
+        padding-top: 0;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
