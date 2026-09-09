@@ -17,7 +17,7 @@
     <meta property="og:title" content="HighLevel CRM & Customer Lifecycle Systems">
     <meta
         property="og:description"
-        content="One flagship HighLevel implementation plus focused, verified CRM, scheduling, recovery, pipeline, and lifecycle demonstrations."
+        content="One flagship HighLevel implementation plus focused, verified CRM, scheduling, recovery, follow-up, pipeline, and lifecycle demonstrations."
     >
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="HighLevel Systems Portfolio">
@@ -74,15 +74,8 @@
             border-radius: var(--radius-xl);
         }
 
-        .hero-card {
-            padding: 30px;
-        }
-
-        .hero-card h2 {
-            margin-bottom: 18px;
-            font-size: 1.35rem;
-            line-height: 1.22;
-        }
+        .hero-card { padding: 30px; }
+        .hero-card h2 { margin-bottom: 18px; font-size: 1.35rem; line-height: 1.22; }
 
         .hero-list {
             list-style: none;
@@ -137,15 +130,8 @@
             text-transform: uppercase;
         }
 
-        .principle-card h3 {
-            margin-bottom: 8px;
-            font-size: 1.08rem;
-        }
-
-        .principle-card p {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-        }
+        .principle-card h3 { margin-bottom: 8px; font-size: 1.08rem; }
+        .principle-card p { color: var(--text-muted); font-size: 0.92rem; }
 
         .lifecycle-strip {
             display: flex;
@@ -170,9 +156,7 @@
             color: var(--success);
         }
 
-        .flagship-wrap {
-            position: relative;
-        }
+        .flagship-wrap { position: relative; }
 
         .flagship-wrap::before {
             content: "";
@@ -199,10 +183,7 @@
                 linear-gradient(145deg, #111219, #0b0b0f);
         }
 
-        .flagship-kicker {
-            margin-bottom: 14px;
-            font-size: 0.79rem;
-        }
+        .flagship-kicker { margin-bottom: 14px; font-size: 0.79rem; }
 
         .flagship-panel h2 {
             max-width: 820px;
@@ -212,9 +193,7 @@
             letter-spacing: -0.055em;
         }
 
-        .flagship-panel h2 span {
-            color: var(--project-accent);
-        }
+        .flagship-panel h2 span { color: var(--project-accent); }
 
         .flagship-lead {
             max-width: 830px;
@@ -251,14 +230,8 @@
             line-height: 1.45;
         }
 
-        .flagship-actions {
-            display: grid;
-            gap: 11px;
-        }
-
-        .flagship-actions .button {
-            width: 100%;
-        }
+        .flagship-actions { display: grid; gap: 11px; }
+        .flagship-actions .button { width: 100%; }
 
         .flagship-note {
             margin-top: 12px;
@@ -272,12 +245,10 @@
             grid-template-columns: minmax(0, 1fr) auto;
             gap: 28px;
             align-items: end;
-            margin-bottom: 34px;
+            margin-bottom: 26px;
         }
 
-        .library-intro .section-intro {
-            margin-bottom: 0;
-        }
+        .library-intro .section-intro { margin-bottom: 0; }
 
         .library-count {
             color: var(--text-muted);
@@ -285,23 +256,91 @@
             white-space: nowrap;
         }
 
-        .demo-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 20px;
-            align-items: start;
+        .carousel-shell { position: relative; }
+
+        .carousel-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 14px;
         }
 
+        .carousel-hint {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .carousel-position {
+            min-width: 72px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 760;
+            text-align: center;
+        }
+
+        .carousel-button {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border-strong);
+            border-radius: 12px;
+            background: var(--surface-raised);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.18rem;
+            font-weight: 850;
+            transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .carousel-button:hover:not(:disabled) {
+            border-color: rgba(91, 140, 255, 0.55);
+            background: rgba(91, 140, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .carousel-button:disabled { opacity: 0.34; cursor: default; }
+
+        .demo-carousel-track {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 2px 2px 14px;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            overscroll-behavior-inline: contain;
+        }
+
+        .demo-carousel-track::-webkit-scrollbar { display: none; }
+
         .library-card {
+            flex: 0 0 calc((100% - 40px) / 3);
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
             box-shadow: none;
+            scroll-snap-align: start;
         }
 
         .library-card-top {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
             padding: 30px;
         }
 
         .library-card h3 {
+            min-height: 3.15em;
             margin-bottom: 8px;
             font-size: clamp(1.6rem, 2.6vw, 2.15rem);
             line-height: 1.04;
@@ -309,17 +348,18 @@
         }
 
         .demo-subtitle {
+            min-height: 4.5em;
             margin-bottom: 17px;
             color: var(--text-soft);
             font-weight: 760;
+            line-height: 1.5;
         }
 
-        .library-card p {
-            color: var(--text-muted);
-        }
+        .library-card p { color: var(--text-muted); }
 
         .library-card .pill-list {
-            margin: 22px 0 0;
+            margin: auto 0 0;
+            padding-top: 22px;
         }
 
         .proof-chain {
@@ -352,9 +392,7 @@
             line-height: 1.5;
         }
 
-        .evidence-details {
-            border-top: 0;
-        }
+        .evidence-details { border-top: 0; }
 
         .evidence-details > summary {
             list-style: none;
@@ -369,12 +407,10 @@
             transition: background 0.2s ease, color 0.2s ease;
         }
 
-        .evidence-details > summary::-webkit-details-marker {
-            display: none;
-        }
+        .evidence-details > summary::-webkit-details-marker { display: none; }
 
         .evidence-details > summary::after {
-            content: "+";
+            content: "↗";
             width: 28px;
             height: 28px;
             display: grid;
@@ -384,10 +420,6 @@
             border-radius: 8px;
             color: var(--project-accent);
             font-size: 1.1rem;
-        }
-
-        .evidence-details[open] > summary::after {
-            content: "−";
         }
 
         .evidence-details > summary:hover {
@@ -428,23 +460,11 @@
             border-radius: 7px;
         }
 
-        .evidence-body {
-            padding: 17px;
-        }
+        .evidence-body { padding: 17px; }
+        .evidence-body h4 { margin-bottom: 6px; font-size: 0.94rem; }
+        .evidence-body p { color: var(--text-muted); font-size: 0.8rem; }
 
-        .evidence-body h4 {
-            margin-bottom: 6px;
-            font-size: 0.94rem;
-        }
-
-        .evidence-body p {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        html.evidence-preview-open {
-            overflow: hidden;
-        }
+        html.evidence-preview-open { overflow: hidden; }
 
         body.theme-highlevel .evidence-details[open] {
             position: fixed;
@@ -477,10 +497,6 @@
             backdrop-filter: blur(14px);
         }
 
-        body.theme-highlevel .evidence-details > summary::after {
-            content: "↗";
-        }
-
         body.theme-highlevel .evidence-details[open] > summary::after {
             content: "×";
             width: 34px;
@@ -505,9 +521,7 @@
             padding: 10px;
         }
 
-        body.theme-highlevel .evidence-details[open] .evidence-body {
-            padding: 18px 19px 20px;
-        }
+        body.theme-highlevel .evidence-details[open] .evidence-body { padding: 18px 19px 20px; }
 
         .roadmap-grid {
             display: grid;
@@ -522,39 +536,17 @@
             background: var(--surface);
         }
 
-        .roadmap-card strong {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.96rem;
-        }
+        .roadmap-card strong { display: block; margin-bottom: 5px; font-size: 0.96rem; }
+        .roadmap-card span { color: var(--text-muted); font-size: 0.82rem; }
 
-        .roadmap-card span {
-            color: var(--text-muted);
-            font-size: 0.82rem;
-        }
-
-        .boundary-card {
-            padding: 32px;
-        }
-
-        .boundary-card h3 {
-            margin-bottom: 10px;
-            font-size: clamp(1.4rem, 2.8vw, 2rem);
-        }
-
-        .boundary-card p {
-            max-width: 900px;
-            color: var(--text-soft);
-        }
+        .boundary-card { padding: 32px; }
+        .boundary-card h3 { margin-bottom: 10px; font-size: clamp(1.4rem, 2.8vw, 2rem); }
+        .boundary-card p { max-width: 900px; color: var(--text-soft); }
 
         @media (max-width: 1120px) {
-            .demo-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .library-card.medspa-card {
-                grid-column: 1 / -1;
-            }
+            .library-card { flex-basis: calc((100% - 20px) / 2); }
+            .library-card h3,
+            .demo-subtitle { min-height: 0; }
         }
 
         @media (max-width: 940px) {
@@ -565,63 +557,38 @@
                 grid-template-columns: 1fr;
             }
 
-            .flagship-proof-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .library-count {
-                white-space: normal;
-            }
-
-            .flagship-actions {
-                display: flex;
-                flex-wrap: wrap;
-            }
-
-            .flagship-actions .button {
-                width: auto;
-            }
-
-            .roadmap-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
+            .flagship-proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .library-count { white-space: normal; }
+            .flagship-actions { display: flex; flex-wrap: wrap; }
+            .flagship-actions .button { width: auto; }
+            .roadmap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
 
         @media (max-width: 680px) {
             .hero-card,
             .library-card,
             .boundary-card,
-            .flagship-panel {
-                border-radius: var(--radius-lg);
-            }
+            .flagship-panel { border-radius: var(--radius-lg); }
 
             .hero-card,
-            .library-card-top,
             .boundary-card,
-            .flagship-panel {
-                padding: 24px;
-            }
+            .flagship-panel { padding: 24px; }
 
-            .demo-grid,
+            .library-card { flex-basis: 100%; }
+            .library-card-top { display: block; padding: 24px; }
+            .library-card .pill-list { margin: 22px 0 0; padding-top: 0; }
+
             .proof-chain,
             .evidence-grid,
             .roadmap-grid,
-            .flagship-proof-grid {
-                grid-template-columns: 1fr;
-            }
+            .flagship-proof-grid { grid-template-columns: 1fr; }
 
-            .library-card.medspa-card {
-                grid-column: auto;
-            }
+            .carousel-toolbar { align-items: flex-end; }
+            .carousel-hint { max-width: 190px; }
+            .carousel-position { min-width: 58px; }
 
-            .evidence-details > summary {
-                align-items: flex-start;
-                padding: 18px 22px;
-            }
-
-            .evidence-details > summary span {
-                display: none;
-            }
+            .evidence-details > summary { align-items: flex-start; padding: 18px 22px; }
+            .evidence-details > summary span { display: none; }
 
             body.theme-highlevel .evidence-details[open] {
                 width: calc(100vw - 20px);
@@ -634,18 +601,9 @@
                 padding: 18px;
             }
 
-            body.theme-highlevel .evidence-details[open] > summary span {
-                display: block;
-            }
-
-            body.theme-highlevel .evidence-details[open] .evidence-grid {
-                grid-template-columns: 1fr;
-                padding: 12px;
-            }
-
-            body.theme-highlevel .evidence-details[open] .evidence-media {
-                min-height: 0;
-            }
+            body.theme-highlevel .evidence-details[open] > summary span { display: block; }
+            body.theme-highlevel .evidence-details[open] .evidence-grid { grid-template-columns: 1fr; padding: 12px; }
+            body.theme-highlevel .evidence-details[open] .evidence-media { min-height: 0; }
         }
     </style>
 </head>
@@ -679,7 +637,7 @@
                 <div>
                     <div class="status">
                         <span class="status-dot" aria-hidden="true"></span>
-                        Oakspan flagship + 3 focused demos verified
+                        Oakspan flagship + 4 focused demos verified
                     </div>
 
                     <h1><span>HighLevel CRM &amp;</span> Customer Lifecycle Systems</h1>
@@ -687,8 +645,8 @@
                     <p class="page-summary">
                         One deep HighLevel implementation proves how the platform works as an integrated
                         operating system. Focused Demo Lab builds then isolate specific business problems
-                        so CRM, qualification, scheduling, recovery, nurture, onboarding, reputation,
-                        and reactivation can be demonstrated without forcing one template onto every business.
+                        so CRM, qualification, scheduling, recovery, follow-up, nurture, onboarding,
+                        reputation, and reactivation can be demonstrated without forcing one template onto every business.
                     </p>
 
                     <div class="pill-list" aria-label="HighLevel capability areas">
@@ -698,7 +656,7 @@
                         <span class="pill">Opportunities</span>
                         <span class="pill">Custom Fields</span>
                         <span class="pill">Calendars</span>
-                        <span class="pill">Forms</span>
+                        <span class="pill">Tasks</span>
                         <span class="pill">Human Handoff</span>
                     </div>
 
@@ -726,15 +684,15 @@
                     <span class="proof-label">full integrated HighLevel case study</span>
                 </div>
                 <div class="proof-item">
-                    <span class="proof-value">3 focused demos</span>
-                    <span class="proof-label">Solar, Dental, and Med Spa verified</span>
+                    <span class="proof-value">4 focused demos</span>
+                    <span class="proof-label">Solar, Dental, Med Spa, and Fitness verified</span>
                 </div>
                 <div class="proof-item">
                     <span class="proof-value">12 workflows</span>
                     <span class="proof-label">published and verified in Oakspan</span>
                 </div>
                 <div class="proof-item">
-                    <span class="proof-value">12 evidence captures</span>
+                    <span class="proof-value">16 evidence captures</span>
                     <span class="proof-label">four screenshots per focused demo</span>
                 </div>
             </div>
@@ -764,13 +722,13 @@
                     <article class="principle-card">
                         <span>03 · Verify</span>
                         <h3>Check the resulting state</h3>
-                        <p>A green workflow run is not enough. Contact, appointment, opportunity, tag, stage, and status state are checked after execution.</p>
+                        <p>A green workflow run is not enough. Contact, appointment, opportunity, tag, task, stage, and status state are checked after execution.</p>
                     </article>
                 </div>
 
                 <div class="lifecycle-strip" aria-label="Customer lifecycle capability map">
                     <span class="lifecycle-chip">Capture</span>
-                    <span class="lifecycle-chip">Respond</span>
+                    <span class="lifecycle-chip verified">Respond · verified</span>
                     <span class="lifecycle-chip verified">Organize · verified</span>
                     <span class="lifecycle-chip">Nurture</span>
                     <span class="lifecycle-chip verified">Convert · verified</span>
@@ -850,150 +808,208 @@
                             CRM state is verified with synthetic test records.
                         </p>
                     </div>
-                    <div class="library-count">3 verified systems · evidence opens in preview</div>
+                    <div class="library-count">4 verified systems · evidence opens in preview</div>
                 </div>
 
-                <div class="demo-grid">
-                    <article class="library-card" id="solar">
-                        <div class="library-card-top">
-                            <span class="demo-label">Demo 01 · Solar Contractor · Verified</span>
-                            <h3>Lead Qualification + Pipeline Sync</h3>
-                            <p class="demo-subtitle">A new lead becomes synchronized qualification and opportunity state.</p>
-                            <p>
-                                A new Solar lead enters with structured property and readiness details. The workflow
-                                classifies it as Qualified, Needs Review, or Not Qualified, then updates tags and moves
-                                the opportunity to the matching pipeline stage.
-                            </p>
-                            <div class="pill-list">
-                                <span class="pill">Custom Fields</span>
-                                <span class="pill">Qualification Rules</span>
-                                <span class="pill">Tags</span>
-                                <span class="pill">Opportunity Sync</span>
-                            </div>
+                <div class="carousel-shell">
+                    <div class="carousel-toolbar">
+                        <span class="carousel-hint">Swipe, scroll, or use the arrows to browse the Demo Lab.</span>
+                        <div class="carousel-controls" aria-label="Demo carousel controls">
+                            <button class="carousel-button" id="demoPrev" type="button" aria-label="Previous demo">←</button>
+                            <span class="carousel-position" id="demoPosition" aria-live="polite">1–3 of 4</span>
+                            <button class="carousel-button" id="demoNext" type="button" aria-label="Next demo">→</button>
                         </div>
+                    </div>
 
-                        <div class="proof-chain" aria-label="Solar problem build and result">
-                            <div class="proof-chain-item"><strong>Problem</strong><span>Lead context must be classified before sales follow-up.</span></div>
-                            <div class="proof-chain-item"><strong>Build</strong><span>Custom fields + qualification routing + pipeline sync.</span></div>
-                            <div class="proof-chain-item"><strong>Verified</strong><span>3 test leads reached 3 intended outcomes.</span></div>
-                        </div>
-
-                        <details class="evidence-details">
-                            <summary>View verified Solar evidence <span>4 screenshots · opens preview</span></summary>
-                            <div class="evidence-grid">
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/solar-01-workflow-routing.png" target="_blank" rel="noopener noreferrer"><img src="assets/solar-01-workflow-routing.png" alt="Solar qualification routing workflow in HighLevel" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">01 · Build</span><h4>Qualification routing</h4><p>The three deterministic branches are visible in the workflow.</p></div>
-                                </article>
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/solar-02-open-qualified-review.png" target="_blank" rel="noopener noreferrer"><img src="assets/solar-02-open-qualified-review.png" alt="Solar pipeline showing qualified and needs-review opportunities" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">02 · Active State</span><h4>Qualified + Needs Review</h4><p>Sofia and Marco land in different active opportunity stages.</p></div>
-                                </article>
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/solar-03-lost-not-qualified.png" target="_blank" rel="noopener noreferrer"><img src="assets/solar-03-lost-not-qualified.png" alt="Solar pipeline showing a not-qualified opportunity in Lost state" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">03 · Lost State</span><h4>Not Qualified preserved</h4><p>Jamie remains visible as an explicit Lost result instead of disappearing.</p></div>
-                                </article>
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/solar-04-execution-logs.png" target="_blank" rel="noopener noreferrer"><img src="assets/solar-04-execution-logs.png" alt="Solar HighLevel workflow execution logs" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">04 · Execution</span><h4>All branches executed</h4><p>Workflow history confirms the synthetic test records completed their intended paths.</p></div>
-                                </article>
+                    <div class="demo-carousel-track" id="demoTrack" tabindex="0" aria-label="Verified HighLevel demo systems">
+                        <article class="library-card" id="solar">
+                            <div class="library-card-top">
+                                <span class="demo-label">Demo 01 · Solar Contractor · Verified</span>
+                                <h3>Lead Qualification + Pipeline Sync</h3>
+                                <p class="demo-subtitle">A new lead becomes synchronized qualification and opportunity state.</p>
+                                <p>
+                                    A new Solar lead enters with structured property and readiness details. The workflow
+                                    classifies it as Qualified, Needs Review, or Not Qualified, then updates tags and moves
+                                    the opportunity to the matching pipeline stage.
+                                </p>
+                                <div class="pill-list">
+                                    <span class="pill">Custom Fields</span>
+                                    <span class="pill">Qualification Rules</span>
+                                    <span class="pill">Tags</span>
+                                    <span class="pill">Opportunity Sync</span>
+                                </div>
                             </div>
-                        </details>
-                    </article>
 
-                    <article class="library-card" id="dental">
-                        <div class="library-card-top">
-                            <span class="demo-label">Demo 02 · Dental Clinic · Verified</span>
-                            <h3>Appointment Booking + Status Sync</h3>
-                            <p class="demo-subtitle">A new booking becomes synchronized appointment and opportunity state.</p>
-                            <p>
-                                A public new-patient booking creates the contact and Appointment Booked opportunity state.
-                                When the appointment changes from Confirmed to Showed, a second workflow updates tags and
-                                moves the opportunity to Appointment Completed.
-                            </p>
-                            <div class="pill-list">
-                                <span class="pill">Calendar</span>
-                                <span class="pill">Appointment Status</span>
-                                <span class="pill">Tags</span>
-                                <span class="pill">Opportunity Sync</span>
+                            <div class="proof-chain" aria-label="Solar problem build and result">
+                                <div class="proof-chain-item"><strong>Problem</strong><span>Lead context must be classified before sales follow-up.</span></div>
+                                <div class="proof-chain-item"><strong>Build</strong><span>Custom fields + qualification routing + pipeline sync.</span></div>
+                                <div class="proof-chain-item"><strong>Verified</strong><span>3 test leads reached 3 intended outcomes.</span></div>
                             </div>
-                        </div>
 
-                        <div class="proof-chain" aria-label="Dental problem build and result">
-                            <div class="proof-chain-item"><strong>Problem</strong><span>Booking and attendance state must stay aligned with CRM.</span></div>
-                            <div class="proof-chain-item"><strong>Build</strong><span>Booking workflow + Showed status + opportunity sync.</span></div>
-                            <div class="proof-chain-item"><strong>Verified</strong><span>Mia reached Completed with Won status.</span></div>
-                        </div>
+                            <details class="evidence-details">
+                                <summary>View verified Solar evidence <span>4 screenshots · opens preview</span></summary>
+                                <div class="evidence-grid">
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/solar-01-workflow-routing.png" target="_blank" rel="noopener noreferrer"><img src="assets/solar-01-workflow-routing.png" alt="Solar qualification routing workflow in HighLevel" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">01 · Build</span><h4>Qualification routing</h4><p>The three deterministic branches are visible in the workflow.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/solar-02-open-qualified-review.png" target="_blank" rel="noopener noreferrer"><img src="assets/solar-02-open-qualified-review.png" alt="Solar pipeline showing qualified and needs-review opportunities" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">02 · Active State</span><h4>Qualified + Needs Review</h4><p>Sofia and Marco land in different active opportunity stages.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/solar-03-lost-not-qualified.png" target="_blank" rel="noopener noreferrer"><img src="assets/solar-03-lost-not-qualified.png" alt="Solar pipeline showing a not-qualified opportunity in Lost state" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">03 · Lost State</span><h4>Not Qualified preserved</h4><p>Jamie remains visible as an explicit Lost result instead of disappearing.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/solar-04-execution-logs.png" target="_blank" rel="noopener noreferrer"><img src="assets/solar-04-execution-logs.png" alt="Solar HighLevel workflow execution logs" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">04 · Execution</span><h4>All branches executed</h4><p>Workflow history confirms the synthetic test records completed their intended paths.</p></div>
+                                    </article>
+                                </div>
+                            </details>
+                        </article>
 
-                        <details class="evidence-details">
-                            <summary>View verified Dental evidence <span>4 screenshots · opens preview</span></summary>
-                            <div class="evidence-grid">
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/dental-01-booking-sync-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/dental-01-booking-sync-execution.png" alt="Dental booking sync execution log in HighLevel" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">01 · Booking</span><h4>Booking sync executed</h4><p>The public appointment triggered contact tags and Appointment Booked opportunity state.</p></div>
-                                </article>
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/dental-02-status-sync-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/dental-02-status-sync-execution.png" alt="Dental appointment status workflow execution log" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">02 · Status</span><h4>Showed status synchronized</h4><p>The second workflow removed Booked state and applied Completed state.</p></div>
-                                </article>
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/dental-03-completed-contact-state.png" target="_blank" rel="noopener noreferrer"><img src="assets/dental-03-completed-contact-state.png" alt="Dental contact showing completed appointment tag" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">03 · Contact</span><h4>Final contact state</h4><p>Mia retains the Dental demo tag and the completed appointment state only.</p></div>
-                                </article>
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/dental-04-completed-opportunity-won.png" target="_blank" rel="noopener noreferrer"><img src="assets/dental-04-completed-opportunity-won.png" alt="Dental opportunity in Appointment Completed with Won status" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">04 · Opportunity</span><h4>Completed + Won</h4><p>The resulting opportunity is visibly synchronized to Appointment Completed.</p></div>
-                                </article>
+                        <article class="library-card" id="dental">
+                            <div class="library-card-top">
+                                <span class="demo-label">Demo 02 · Dental Clinic · Verified</span>
+                                <h3>Appointment Booking + Status Sync</h3>
+                                <p class="demo-subtitle">A new booking becomes synchronized appointment and opportunity state.</p>
+                                <p>
+                                    A public new-patient booking creates the contact and Appointment Booked opportunity state.
+                                    When the appointment changes from Confirmed to Showed, a second workflow updates tags and
+                                    moves the opportunity to Appointment Completed.
+                                </p>
+                                <div class="pill-list">
+                                    <span class="pill">Calendar</span>
+                                    <span class="pill">Appointment Status</span>
+                                    <span class="pill">Tags</span>
+                                    <span class="pill">Opportunity Sync</span>
+                                </div>
                             </div>
-                        </details>
-                    </article>
 
-                    <article class="library-card medspa-card" id="medspa">
-                        <div class="library-card-top">
-                            <span class="demo-label">Demo 03 · Med Spa · Verified</span>
-                            <h3>No-Show Recovery + Rebooking</h3>
-                            <p class="demo-subtitle">A missed appointment becomes synchronized recovery and rebooking state.</p>
-                            <p>
-                                A No Show event applies recovery state, moves the opportunity to Recovery Follow-Up,
-                                and creates a staff task. When the same contact rebooks, a second workflow clears the
-                                recovery tags and moves the existing opportunity to Rebooked.
-                            </p>
-                            <div class="pill-list">
-                                <span class="pill">No-Show Trigger</span>
-                                <span class="pill">Tasks</span>
-                                <span class="pill">Find Opportunity</span>
-                                <span class="pill">Rebooking Sync</span>
+                            <div class="proof-chain" aria-label="Dental problem build and result">
+                                <div class="proof-chain-item"><strong>Problem</strong><span>Booking and attendance state must stay aligned with CRM.</span></div>
+                                <div class="proof-chain-item"><strong>Build</strong><span>Booking workflow + Showed status + opportunity sync.</span></div>
+                                <div class="proof-chain-item"><strong>Verified</strong><span>Mia reached Completed with Won status.</span></div>
                             </div>
-                        </div>
 
-                        <div class="proof-chain" aria-label="Med Spa problem build and result">
-                            <div class="proof-chain-item"><strong>Problem</strong><span>Missed consultations need a controlled recovery path.</span></div>
-                            <div class="proof-chain-item"><strong>Build</strong><span>No-show trigger + staff task + rebooking sync.</span></div>
-                            <div class="proof-chain-item"><strong>Verified</strong><span>Alyssa moved from Recovery Follow-Up to Rebooked.</span></div>
-                        </div>
+                            <details class="evidence-details">
+                                <summary>View verified Dental evidence <span>4 screenshots · opens preview</span></summary>
+                                <div class="evidence-grid">
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/dental-01-booking-sync-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/dental-01-booking-sync-execution.png" alt="Dental booking sync execution log in HighLevel" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">01 · Booking</span><h4>Booking sync executed</h4><p>The public appointment triggered contact tags and Appointment Booked opportunity state.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/dental-02-status-sync-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/dental-02-status-sync-execution.png" alt="Dental appointment status workflow execution log" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">02 · Status</span><h4>Showed status synchronized</h4><p>The second workflow removed Booked state and applied Completed state.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/dental-03-completed-contact-state.png" target="_blank" rel="noopener noreferrer"><img src="assets/dental-03-completed-contact-state.png" alt="Dental contact showing completed appointment tag" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">03 · Contact</span><h4>Final contact state</h4><p>Mia retains the Dental demo tag and the completed appointment state only.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/dental-04-completed-opportunity-won.png" target="_blank" rel="noopener noreferrer"><img src="assets/dental-04-completed-opportunity-won.png" alt="Dental opportunity in Appointment Completed with Won status" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">04 · Opportunity</span><h4>Completed + Won</h4><p>The resulting opportunity is visibly synchronized to Appointment Completed.</p></div>
+                                    </article>
+                                </div>
+                            </details>
+                        </article>
 
-                        <details class="evidence-details">
-                            <summary>View verified Med Spa evidence <span>4 screenshots · opens preview</span></summary>
-                            <div class="evidence-grid">
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/medspa-01-no-show-recovery-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/medspa-01-no-show-recovery-execution.png" alt="Med Spa no-show recovery workflow execution log" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">01 · Recovery</span><h4>No-show recovery executed</h4><p>Tags, recovery-stage opportunity movement, and the staff follow-up task all executed.</p></div>
-                                </article>
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/medspa-02-rebooking-sync-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/medspa-02-rebooking-sync-execution.png" alt="Med Spa rebooking workflow execution log" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">02 · Rebooking</span><h4>Recovery state cleared</h4><p>The rebooking workflow removed No Show and Recovery tags, found the opportunity, and moved it to Rebooked.</p></div>
-                                </article>
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/medspa-03-rebooked-contact-state.png" target="_blank" rel="noopener noreferrer"><img src="assets/medspa-03-rebooked-contact-state.png" alt="Med Spa contact showing final Rebooked tag state" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">03 · Contact</span><h4>Clean final contact state</h4><p>Alyssa retains the demo tag and Rebooked state; recovery tags are gone.</p></div>
-                                </article>
-                                <article class="evidence-card">
-                                    <div class="evidence-media"><a href="assets/medspa-04-rebooked-opportunity.png" target="_blank" rel="noopener noreferrer"><img src="assets/medspa-04-rebooked-opportunity.png" alt="Med Spa opportunity in Rebooked stage" loading="lazy" decoding="async"></a></div>
-                                    <div class="evidence-body"><span class="evidence-label">04 · Opportunity</span><h4>Existing opportunity reactivated</h4><p>The same opportunity is visible in Rebooked instead of creating a disconnected duplicate state.</p></div>
-                                </article>
+                        <article class="library-card" id="medspa">
+                            <div class="library-card-top">
+                                <span class="demo-label">Demo 03 · Med Spa · Verified</span>
+                                <h3>No-Show Recovery + Rebooking</h3>
+                                <p class="demo-subtitle">A missed appointment becomes synchronized recovery and rebooking state.</p>
+                                <p>
+                                    A No Show event applies recovery state, moves the opportunity to Recovery Follow-Up,
+                                    and creates a staff task. When the same contact rebooks, a second workflow clears the
+                                    recovery tags and moves the existing opportunity to Rebooked.
+                                </p>
+                                <div class="pill-list">
+                                    <span class="pill">No-Show Trigger</span>
+                                    <span class="pill">Tasks</span>
+                                    <span class="pill">Find Opportunity</span>
+                                    <span class="pill">Rebooking Sync</span>
+                                </div>
                             </div>
-                        </details>
-                    </article>
+
+                            <div class="proof-chain" aria-label="Med Spa problem build and result">
+                                <div class="proof-chain-item"><strong>Problem</strong><span>Missed consultations need a controlled recovery path.</span></div>
+                                <div class="proof-chain-item"><strong>Build</strong><span>No-show trigger + staff task + rebooking sync.</span></div>
+                                <div class="proof-chain-item"><strong>Verified</strong><span>Alyssa moved from Recovery Follow-Up to Rebooked.</span></div>
+                            </div>
+
+                            <details class="evidence-details">
+                                <summary>View verified Med Spa evidence <span>4 screenshots · opens preview</span></summary>
+                                <div class="evidence-grid">
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/medspa-01-no-show-recovery-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/medspa-01-no-show-recovery-execution.png" alt="Med Spa no-show recovery workflow execution log" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">01 · Recovery</span><h4>No-show recovery executed</h4><p>Tags, recovery-stage opportunity movement, and the staff follow-up task all executed.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/medspa-02-rebooking-sync-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/medspa-02-rebooking-sync-execution.png" alt="Med Spa rebooking workflow execution log" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">02 · Rebooking</span><h4>Recovery state cleared</h4><p>The rebooking workflow removed No Show and Recovery tags, found the opportunity, and moved it to Rebooked.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/medspa-03-rebooked-contact-state.png" target="_blank" rel="noopener noreferrer"><img src="assets/medspa-03-rebooked-contact-state.png" alt="Med Spa contact showing final Rebooked tag state" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">03 · Contact</span><h4>Clean final contact state</h4><p>Alyssa retains the demo tag and Rebooked state; recovery tags are gone.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/medspa-04-rebooked-opportunity.png" target="_blank" rel="noopener noreferrer"><img src="assets/medspa-04-rebooked-opportunity.png" alt="Med Spa opportunity in Rebooked stage" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">04 · Opportunity</span><h4>Existing opportunity reactivated</h4><p>The same opportunity is visible in Rebooked instead of creating a disconnected duplicate state.</p></div>
+                                    </article>
+                                </div>
+                            </details>
+                        </article>
+
+                        <article class="library-card" id="fitness">
+                            <div class="library-card-top">
+                                <span class="demo-label">Demo 04 · Fitness Studio · Verified</span>
+                                <h3>Speed-to-Lead + Progress Sync</h3>
+                                <p class="demo-subtitle">A new lead becomes owned, followed up, escalated when idle, and advanced when engaged.</p>
+                                <p>
+                                    A new Fitness lead is assigned to an owner, placed in the pipeline, and given an immediate
+                                    follow-up task. After a timed window, progression clears follow-up state while inactivity
+                                    creates an escalation task. A second workflow syncs Engaged and Booked tags to opportunity stages.
+                                </p>
+                                <div class="pill-list">
+                                    <span class="pill">Lead Ownership</span>
+                                    <span class="pill">Tasks</span>
+                                    <span class="pill">Wait + Branch</span>
+                                    <span class="pill">Progress Sync</span>
+                                </div>
+                            </div>
+
+                            <div class="proof-chain" aria-label="Fitness problem build and result">
+                                <div class="proof-chain-item"><strong>Problem</strong><span>New inquiries lose value when ownership and follow-up are inconsistent.</span></div>
+                                <div class="proof-chain-item"><strong>Build</strong><span>Assignment + timed follow-up + escalation + progress sync.</span></div>
+                                <div class="proof-chain-item"><strong>Verified</strong><span>Liam progressed to Booked; Nina remained New Lead with escalation.</span></div>
+                            </div>
+
+                            <details class="evidence-details">
+                                <summary>View verified Fitness evidence <span>4 screenshots · opens preview</span></summary>
+                                <div class="evidence-grid">
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/fitness-01-progressed-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/fitness-01-progressed-execution.png" alt="Fitness speed-to-lead workflow showing Liam progressing and follow-up state clearing" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">01 · Progressed</span><h4>Progress stops escalation</h4><p>Liam completed the wait, entered Progressed, and had New Lead and Follow-Up Due state cleared.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/fitness-02-escalation-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/fitness-02-escalation-execution.png" alt="Fitness speed-to-lead workflow showing Nina receiving an escalated follow-up task" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">02 · Escalation</span><h4>Idle lead creates second task</h4><p>Nina completed the same wait without progress and executed the escalated follow-up task branch.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/fitness-03-progress-sync-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/fitness-03-progress-sync-execution.png" alt="Fitness progress sync workflow showing Engaged and Booked opportunity updates" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">03 · Progress Sync</span><h4>Engaged then Booked</h4><p>Re-entry is visible as Liam first moves to Engaged and later to Trial / Consultation Booked.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/fitness-04-final-opportunity-state.png" target="_blank" rel="noopener noreferrer"><img src="assets/fitness-04-final-opportunity-state.png" alt="Fitness pipeline showing Nina in New Lead and Liam in Trial Consultation Booked" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">04 · Final State</span><h4>Two outcomes remain visible</h4><p>Nina stays in New Lead for follow-up while Liam is synchronized to Trial / Consultation Booked.</p></div>
+                                    </article>
+                                </div>
+                            </details>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1008,7 +1024,6 @@
                 </p>
 
                 <div class="roadmap-grid">
-                    <article class="roadmap-card"><strong>Fitness Studio</strong><span>Speed-to-lead and new-lead follow-up.</span></article>
                     <article class="roadmap-card"><strong>Real Estate</strong><span>Longer-term lead nurture and readiness branching.</span></article>
                     <article class="roadmap-card"><strong>Marketing Agency</strong><span>Client onboarding and internal handoff.</span></article>
                     <article class="roadmap-card"><strong>Restaurant / Café</strong><span>Completion-triggered review request workflow.</span></article>
@@ -1079,6 +1094,56 @@
                 openPreview.open = false;
                 syncPageLock();
             });
+        })();
+
+        (() => {
+            const track = document.getElementById('demoTrack');
+            const prev = document.getElementById('demoPrev');
+            const next = document.getElementById('demoNext');
+            const position = document.getElementById('demoPosition');
+            const cards = Array.from(track.querySelectorAll('.library-card'));
+
+            const getMetrics = () => {
+                const first = cards[0];
+                const gap = parseFloat(getComputedStyle(track).gap) || 0;
+                const step = first.getBoundingClientRect().width + gap;
+                const visible = Math.max(1, Math.min(cards.length, Math.round((track.clientWidth + gap) / step)));
+                const index = Math.max(0, Math.min(cards.length - visible, Math.round(track.scrollLeft / step)));
+                return { step, visible, index };
+            };
+
+            const updateControls = () => {
+                const { visible, index } = getMetrics();
+                const start = index + 1;
+                const end = Math.min(cards.length, index + visible);
+                position.textContent = visible === 1 ? `${start} of ${cards.length}` : `${start}–${end} of ${cards.length}`;
+                prev.disabled = index <= 0;
+                next.disabled = index >= cards.length - visible;
+            };
+
+            const move = (direction) => {
+                const { step, visible, index } = getMetrics();
+                const targetIndex = Math.max(0, Math.min(cards.length - visible, index + direction));
+                track.scrollTo({ left: targetIndex * step, behavior: 'smooth' });
+            };
+
+            prev.addEventListener('click', () => move(-1));
+            next.addEventListener('click', () => move(1));
+            track.addEventListener('scroll', () => requestAnimationFrame(updateControls), { passive: true });
+            window.addEventListener('resize', updateControls);
+
+            track.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    move(-1);
+                }
+                if (event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    move(1);
+                }
+            });
+
+            updateControls();
         })();
     </script>
 </body>
