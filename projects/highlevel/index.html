@@ -313,8 +313,9 @@
             align-items: stretch;
             gap: 20px;
             overflow-x: auto;
-            padding: 2px 2px 14px;
+            padding: 2px 0 14px;
             scroll-snap-type: x mandatory;
+            scroll-padding-inline: 0;
             scroll-behavior: smooth;
             scrollbar-width: none;
             overscroll-behavior-inline: contain;
@@ -330,6 +331,12 @@
             overflow: hidden;
             box-shadow: none;
             scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        body.theme-highlevel .demo-carousel-track .library-card {
+            height: auto;
+            align-self: stretch;
         }
 
         .library-card-top {
@@ -397,6 +404,7 @@
         .evidence-details > summary {
             list-style: none;
             cursor: pointer;
+            min-height: 76px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -1106,7 +1114,9 @@
             const getMetrics = () => {
                 const first = cards[0];
                 const gap = parseFloat(getComputedStyle(track).gap) || 0;
-                const step = first.getBoundingClientRect().width + gap;
+                const step = cards.length > 1
+                    ? cards[1].offsetLeft - cards[0].offsetLeft
+                    : first.getBoundingClientRect().width + gap;
                 const visible = Math.max(1, Math.min(cards.length, Math.round((track.clientWidth + gap) / step)));
                 const index = Math.max(0, Math.min(cards.length - visible, Math.round(track.scrollLeft / step)));
                 return { step, visible, index };
@@ -1122,9 +1132,11 @@
             };
 
             const move = (direction) => {
-                const { step, visible, index } = getMetrics();
+                const { visible, index } = getMetrics();
                 const targetIndex = Math.max(0, Math.min(cards.length - visible, index + direction));
-                track.scrollTo({ left: targetIndex * step, behavior: 'smooth' });
+                const naturalLeft = cards[targetIndex].offsetLeft - cards[0].offsetLeft;
+                const maxLeft = Math.max(0, track.scrollWidth - track.clientWidth);
+                track.scrollTo({ left: Math.min(maxLeft, naturalLeft), behavior: 'smooth' });
             };
 
             prev.addEventListener('click', () => move(-1));
