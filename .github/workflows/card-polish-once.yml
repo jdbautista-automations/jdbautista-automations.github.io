@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Tighten HighLevel Demo Lab cards
+      - name: Tighten HighLevel Demo Lab proof rows
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -24,13 +24,6 @@ jobs:
           text = path.read_text(encoding='utf-8')
 
           replacements = {
-              '''        .library-card .pill-list {
-            margin: auto 0 0;
-            padding-top: 22px;
-        }''': '''        .library-card .pill-list {
-            margin: 22px 0 0;
-            padding-top: 0;
-        }''',
               '''        .proof-chain-item {
             min-height: 118px;
             padding: 20px;
@@ -80,5 +73,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add projects/highlevel/index.html
           git diff --cached --quiet && exit 0
-          git commit -m "Tighten Demo Lab card spacing"
+          git commit -m "Compact Demo Lab proof rows"
           git push
