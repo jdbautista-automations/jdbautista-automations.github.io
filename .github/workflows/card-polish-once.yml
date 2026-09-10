@@ -1,0 +1,84 @@
+name: One-time HighLevel card polish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/card-polish-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tighten HighLevel Demo Lab cards
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('projects/highlevel/index.html')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = {
+              '''        .library-card .pill-list {
+            margin: auto 0 0;
+            padding-top: 22px;
+        }''': '''        .library-card .pill-list {
+            margin: 22px 0 0;
+            padding-top: 0;
+        }''',
+              '''        .proof-chain-item {
+            min-height: 118px;
+            padding: 20px;
+            background: rgba(9, 9, 13, 0.72);
+        }''': '''        .proof-chain-item {
+            min-height: 104px;
+            padding: 16px 14px;
+            background: rgba(9, 9, 13, 0.72);
+        }''',
+              '''        .proof-chain-item span {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }''': '''        .proof-chain-item span {
+            color: var(--text-muted);
+            font-size: 0.76rem;
+            line-height: 1.42;
+        }''',
+              'Lead context must be classified before sales follow-up.': 'Leads need qualification before sales follow-up.',
+              'Custom fields + qualification routing + pipeline sync.': 'Fields + qualification routing + pipeline sync.',
+              'Booking and attendance state must stay aligned with CRM.': 'Booking and attendance must stay aligned with CRM.',
+              'Booking workflow + Showed status + opportunity sync.': 'Booking + Showed-status opportunity sync.',
+              'Mia reached Completed with Won status.': 'Mia reached Completed + Won.',
+              'Missed consultations need a controlled recovery path.': 'No-shows need a controlled recovery path.',
+              'No-show trigger + staff task + rebooking sync.': 'No-show task + rebooking sync.',
+              'Alyssa moved from Recovery Follow-Up to Rebooked.': 'Alyssa moved Recovery Follow-Up → Rebooked.',
+              'New inquiries lose value when ownership and follow-up are inconsistent.': 'New leads need fast ownership and follow-up.',
+              'Assignment + timed follow-up + escalation + progress sync.': 'Assignment + wait + escalation + progress sync.',
+              'Liam progressed to Booked; Nina remained New Lead with escalation.': 'Liam advanced to Booked; Nina escalated.',
+              'Long-cycle buyers need different follow-up based on purchase readiness.': 'Long-cycle buyers need readiness-based follow-up.',
+              'Timeline routing + readiness state + cadence tasks + progression sync.': 'Timeline routing + cadence + progression sync.',
+              '3 buyers routed correctly; Camille later moved Warm Lead → Active Search on the same opportunity.': '3 buyers routed; Camille advanced on the same opportunity.'
+          }
+
+          for old, new in replacements.items():
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly one match, found {count}: {old[:80]!r}')
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit polish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects/highlevel/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Tighten Demo Lab card spacing"
+          git push
