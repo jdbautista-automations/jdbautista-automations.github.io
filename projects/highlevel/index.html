@@ -17,7 +17,7 @@
     <meta property="og:title" content="HighLevel CRM & Customer Lifecycle Systems">
     <meta
         property="og:description"
-        content="One flagship HighLevel implementation plus focused, verified CRM, scheduling, recovery, follow-up, onboarding, reputation, pipeline, and lifecycle demonstrations."
+        content="One flagship HighLevel implementation plus focused, verified CRM, scheduling, recovery, follow-up, onboarding, reputation, reactivation, pipeline, and lifecycle demonstrations."
     >
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="HighLevel Systems Portfolio">
@@ -533,8 +533,9 @@
 
         .roadmap-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: 1fr;
             gap: 12px;
+            max-width: 560px;
         }
 
         .roadmap-card {
@@ -555,7 +556,7 @@
             .library-card { flex-basis: calc((100% - 20px) / 2); }
             .library-card h3,
             .demo-subtitle { min-height: 0; }
-            .roadmap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .roadmap-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 940px) {
@@ -629,7 +630,7 @@
                 <a href="#overview">Overview</a>
                 <a href="#flagship">Oakspan</a>
                 <a href="#systems">Systems</a>
-                <a class="hide-mobile" href="#roadmap">Next Builds</a>
+                <a class="hide-mobile" href="#roadmap">Final Build</a>
                 <a href="../../">Portfolio</a>
             </div>
         </div>
@@ -645,7 +646,7 @@
                 <div>
                     <div class="status">
                         <span class="status-dot" aria-hidden="true"></span>
-                        Oakspan flagship + 7 focused demos verified
+                        Oakspan flagship + 8 focused demos verified
                     </div>
 
                     <h1><span>HighLevel CRM &amp;</span> Customer Lifecycle Systems</h1>
@@ -666,6 +667,7 @@
                         <span class="pill">Calendars</span>
                         <span class="pill">Tasks</span>
                         <span class="pill">Reputation</span>
+                        <span class="pill">Reactivation</span>
                         <span class="pill">Human Handoff</span>
                     </div>
 
@@ -693,15 +695,15 @@
                     <span class="proof-label">full integrated HighLevel case study</span>
                 </div>
                 <div class="proof-item">
-                    <span class="proof-value">7 focused demos</span>
-                    <span class="proof-label">Solar, Dental, Med Spa, Fitness, Real Estate, Marketing Agency, and Restaurant / Café verified</span>
+                    <span class="proof-value">8 focused demos</span>
+                    <span class="proof-label">Solar, Dental, Med Spa, Fitness, Real Estate, Marketing Agency, Restaurant / Café, and Auto Services verified</span>
                 </div>
                 <div class="proof-item">
                     <span class="proof-value">12 workflows</span>
                     <span class="proof-label">published and verified in Oakspan</span>
                 </div>
                 <div class="proof-item">
-                    <span class="proof-value">28 evidence captures</span>
+                    <span class="proof-value">32 evidence captures</span>
                     <span class="proof-label">four screenshots per focused demo</span>
                 </div>
             </div>
@@ -744,7 +746,7 @@
                     <span class="lifecycle-chip verified">Recover · verified</span>
                     <span class="lifecycle-chip verified">Onboard · verified</span>
                     <span class="lifecycle-chip verified">Reputation · verified</span>
-                    <span class="lifecycle-chip">Reactivate</span>
+                    <span class="lifecycle-chip verified">Reactivate · verified</span>
                 </div>
             </div>
         </section>
@@ -817,7 +819,7 @@
                             CRM state is verified with synthetic test records.
                         </p>
                     </div>
-                    <div class="library-count">7 verified systems · evidence opens in preview</div>
+                    <div class="library-count">8 verified systems · evidence opens in preview</div>
                 </div>
 
                 <div class="carousel-shell">
@@ -825,7 +827,7 @@
                         <span class="carousel-hint">Swipe, scroll, or use the arrows to browse the Demo Lab.</span>
                         <div class="carousel-controls" aria-label="Demo carousel controls">
                             <button class="carousel-button" id="demoPrev" type="button" aria-label="Previous demo">←</button>
-                            <span class="carousel-position" id="demoPosition" aria-live="polite">1–3 of 7</span>
+                            <span class="carousel-position" id="demoPosition" aria-live="polite">1–3 of 8</span>
                             <button class="carousel-button" id="demoNext" type="button" aria-label="Next demo">→</button>
                         </div>
                     </div>
@@ -1159,6 +1161,51 @@
                                 </div>
                             </details>
                         </article>
+
+                        <article class="library-card" id="auto-services">
+                            <div class="library-card-top">
+                                <span class="demo-label">Demo 08 · Auto Services · Verified</span>
+                                <h3>Dormant Contact Reactivation + Reply Sync</h3>
+                                <p class="demo-subtitle">Dormant contacts receive response-aware outreach, late replies recover existing opportunities, and silence becomes a staff follow-up state.</p>
+                                <p>
+                                    The initial two-contact test plan expanded into three preserved QA outcomes. Marcus proved that an early real email reply stops the outbound workflow; Jenna then verified the corrected late-reply path from No Response to Re-engaged on the existing opportunity; Ryan remained the clean no-reply control with a manual follow-up task.
+                                </p>
+                                <div class="pill-list">
+                                    <span class="pill">Send Email</span>
+                                    <span class="pill">Stop on Response</span>
+                                    <span class="pill">Customer Replied</span>
+                                    <span class="pill">Find Opportunity</span>
+                                </div>
+                            </div>
+
+                            <div class="proof-chain" aria-label="Auto Services problem build and result">
+                                <div class="proof-chain-item"><strong>Problem</strong><span>Dormant leads and customers need structured, response-aware reactivation.</span></div>
+                                <div class="proof-chain-item"><strong>Build</strong><span>Email outreach + response stop + reply sync + no-response fallback.</span></div>
+                                <div class="proof-chain-item"><strong>Verified</strong><span>Early reply stopped outreach; late reply recovered; no reply created staff follow-up.</span></div>
+                            </div>
+
+                            <details class="evidence-details">
+                                <summary>View verified Auto Services evidence <span>4 screenshots · opens preview</span></summary>
+                                <div class="evidence-grid">
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/auto-01-no-response-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/auto-01-no-response-execution.png" alt="Auto Services no-response workflow execution for Ryan Santos" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">01 · No Response</span><h4>Fallback path executed cleanly</h4><p>Ryan received outreach, completed the response window without replying, moved to No Response, and received a manual follow-up task.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/auto-02-late-reply-recovery-execution.png" target="_blank" rel="noopener noreferrer"><img src="assets/auto-02-late-reply-recovery-execution.png" alt="Auto Services late-reply recovery execution for Jenna Cruz" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">02 · Late Reply</span><h4>Existing opportunity recovered</h4><p>Jenna's real email reply found the existing opportunity, cleared stale state, applied Re-engaged, and moved the opportunity from No Response to Re-engaged.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/auto-03-reactivation-pipeline.png" target="_blank" rel="noopener noreferrer"><img src="assets/auto-03-reactivation-pipeline.png" alt="Auto Services pipeline preserving early-reply late-reply and no-response QA outcomes" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">03 · QA Outcomes</span><h4>Three test behaviors preserved</h4><p>Marcus remains at Reactivation Sent from the early-reply test before opportunity-sync correction; Jenna shows the corrected Re-engaged recovery; Ryan shows the clean No Response fallback. The historical states were intentionally not manually rewritten.</p></div>
+                                    </article>
+                                    <article class="evidence-card">
+                                        <div class="evidence-media"><a href="assets/auto-04-final-reactivated-contact.png" target="_blank" rel="noopener noreferrer"><img src="assets/auto-04-final-reactivated-contact.png" alt="Auto Services Jenna Cruz contact showing Re-engaged tags and reactivation fields" loading="lazy" decoding="async"></a></div>
+                                        <div class="evidence-body"><span class="evidence-label">04 · Final Contact</span><h4>Reactivated contact state is clean</h4><p>Jenna retains only the Auto Services demo and Re-engaged tags, with Old Lead segment and Re-engaged status recorded in contact fields.</p></div>
+                                    </article>
+                                </div>
+                            </details>
+                        </article>
                     </div>
                 </div>
             </div>
@@ -1166,15 +1213,13 @@
 
         <section class="section" id="roadmap" aria-labelledby="roadmap-title">
             <div class="container">
-                <p class="section-label">Next Focused Builds</p>
-                <h2 class="section-title" id="roadmap-title">The library expands by capability, not by duplicate industries.</h2>
+                <p class="section-label">Final Focused Build</p>
+                <h2 class="section-title" id="roadmap-title">One capability remains: Capture.</h2>
                 <p class="section-intro">
-                    Planned demonstrations are intentionally scoped to add a new capability to the portfolio.
-                    They remain roadmap items until tested and verified.
+                    Coach / Consultant is intentionally scoped to add the remaining Capture capability. It stays a roadmap item until the lead-capture funnel and CRM entry are tested and verified.
                 </p>
 
                 <div class="roadmap-grid">
-                    <article class="roadmap-card"><strong>Auto Services</strong><span>Old-lead and dormant-customer reactivation.</span></article>
                     <article class="roadmap-card"><strong>Coach / Consultant</strong><span>Focused lead-capture funnel and CRM entry.</span></article>
                 </div>
             </div>
